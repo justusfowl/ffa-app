@@ -6,6 +6,10 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 
+import { TranslateModule } from '@ngx-translate/core';
+import { PipesModule } from '../services/pipes.module';
+import { AnnouncementModule } from '../_components/announcement/announcement.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +20,10 @@ import { HomePage } from './home.page';
         path: '',
         component: HomePage
       }
-    ])
+    ]), 
+    TranslateModule.forChild(), 
+    PipesModule, 
+    AnnouncementModule
   ],
   declarations: [HomePage]
 })

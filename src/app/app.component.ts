@@ -4,6 +4,8 @@ import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SettingsPage } from './settings/settings.page';
+import { TranslateService } from '@ngx-translate/core';
+import { ProfilePage } from './profile/profile.page';
 
 @Component({
   selector: 'app-root',
@@ -37,16 +39,24 @@ export class AppComponent {
       url: '/team',
       icon: 'list'
     },
+    {
+      title: 'Coach',
+      beta : true,
+      url: '/coach',
+      icon: 'list'
+    },
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar, 
-    public modalController : ModalController
+    public modalController : ModalController,
+    translate : TranslateService
   ) {
 
     this.initializeApp();
+    translate.setDefaultLang('de');
 
   }
 
@@ -57,10 +67,21 @@ export class AppComponent {
     });
   }
 
-
   async openSettings(ev: any) {
     const modal = await this.modalController.create({
       component: SettingsPage,
+      componentProps: {
+        'firstName': 'Douglas',
+        'lastName': 'Adams',
+        'middleInitial': 'N'
+      }
+    });
+    return await modal.present();
+  }
+
+  async openProfile(ev: any) {
+    const modal = await this.modalController.create({
+      component: ProfilePage,
       componentProps: {
         'firstName': 'Douglas',
         'lastName': 'Adams',

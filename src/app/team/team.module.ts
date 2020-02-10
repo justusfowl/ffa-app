@@ -7,13 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { TeamPageRoutingModule } from './team-routing.module';
 
 import { TeamPage } from './team.page';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { PipesModule } from '../services/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TeamPageRoutingModule
+    TeamPageRoutingModule, 
+    TranslateModule.forChild(), 
+    PipesModule
   ],
   declarations: [TeamPage]
 })

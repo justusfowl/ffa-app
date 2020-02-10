@@ -1,0 +1,65 @@
+.beta{
+    color: var(--ion-color-secondary);
+    vertical-align: sub;
+    font-size: smaller;
+    font-weight: 100;
+}
+
+.welcome{
+    p{
+        line-height: 20pt;
+    }
+
+    
+    
+}
+
+.past-evals-title{
+    margin-top: 30px;
+}
+
+h4{
+    text-transform: uppercase;
+    font-size: 12px;
+    color: gray;
+}
+
+.past-evals{
+    .eval{
+        background-color: white;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        border-radius: 4px;
+        margin: 10px;
+        padding: 10px;
+        position: relative;
+
+        .main{
+            display: flex;
+            align-items: center;
+            
+
+            .score{
+                font-size: 50px;
+                margin-right: 10px;
+                margin-left: 20px;
+            }
+
+            .unit{
+                font-size: 10px;
+                color: #a3a3a3;
+            }
+
+            .perc{
+                font-size: 16px;
+            }
+
+        }
+        .date{
+            position: absolute;
+            right: 10px; 
+            bottom: 10px; 
+            font-size: 12px;
+        }
+    }
+}
+

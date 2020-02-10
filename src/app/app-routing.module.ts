@@ -34,6 +34,22 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'coach',
+    loadChildren: () => import('./coach/coachstart/coachstart.module').then( m => m.CoachstartPageModule)
+  },
+  {
+    path: 'coachchat',
+    loadChildren: () => import('./coach/coachchat/coachchat.module').then( m => m.CoachchatPageModule)
+  },
+  {
+    path: 'eval',
+    loadChildren: () => import('./coach/eval/eval.module').then( m => m.EvalPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   }
 ];
 

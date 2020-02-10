@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>{{'COACH_START' | translate}}<span class="beta" > &beta;eta</span></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+  <div class="ion-padding welcome">
+
+    <h4>Facharztpraxis für Allgemeinmedizin</h4>
+    <h1>{{'COACH_WELCOME' | translate}}</h1>
+    <p>{{'COACH_INTRO' | translate}}</p>
+
+    <ion-button class="start-btn" expand="full" (click)="startEval()">START</ion-button>
+
+    <h4 class="past-evals-title" *ngIf="evals.length > 0">Vergangene Analysen</h4>
+
+    <div class="past-evals">
+      <div class="eval" *ngFor="let eval of evals; let i=index;">
+        <div class="main">
+            <div class="score">{{eval.score}}</div>
+            <div class="unit">
+              <div class="perc">
+                %
+              </div>
+              <div class="group">
+                  in your group
+              </div>
+            </div>
+
+        </div>
+        <div class="date">
+          {{formatDate(eval.evalDate)}}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

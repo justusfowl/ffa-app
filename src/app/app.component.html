@@ -11,8 +11,8 @@
             <div class="username">
               JustusFowl
             </div>
-            <div class="profile">
-              Profil
+            <div class="profile"  (click)="openProfile()">
+              my{{'Profil' | translate}}
             </div>
 
         </div>
@@ -26,6 +26,7 @@
             >
 
               {{p.title}}
+              <span class="beta" *ngIf="p.beta">&beta;eta</span>
 
           </div>
         </ion-menu-toggle>
@@ -34,7 +35,7 @@
 
         <div class="build">
 
-          <span>1.2.1</span>
+          <span>0.2.1281</span>
           <ion-icon class="settings" name="cog" (click)="openSettings()"></ion-icon>
 
         </div>

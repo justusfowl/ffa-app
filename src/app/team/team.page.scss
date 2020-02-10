@@ -1,0 +1,27 @@
+app-team{
+   
+} 
+
+.description{
+    transition: 0.5s;
+    margin-top: 10px;
+}
+
+.description.sel{
+    white-space: normal;
+    color: black;
+}   
+
+ion-item{
+    --background-activated : black;
+    --border-color	: rgba(0, 0, 0, 0);
+}
+
+.member h2{
+    color: var(--ion-color-dark);
+    font-weight: 600;
+}
+
+ion-content{
+    --background: white;
+}

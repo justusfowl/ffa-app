@@ -3,10 +3,44 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>team</ion-title>
+    <ion-title>{{'TEAM' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-list>
+        <ion-list-header>
+            {{'DOCS' | translate}}
+        </ion-list-header>
+
+        <ion-item *ngFor="let t of teamDocs; let i=index;" class="member" (click)="selectMember('doc', i)">
+          <ion-avatar slot="start">
+            <img [src]="t.picture">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{t.name}}</h2>
+            <h3>{{t.role}}</h3>
+            <p class="description" [class.sel]="(selectedMemberType == 'doc' && selectedIdx == i)">{{t.description}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+            {{'MFAS' | translate}}
+        </ion-list-header>
+
+        <ion-item *ngFor="let t of teamMfa; let i=index;" class="member" (click)="selectMember('mfa', i)">
+            <ion-avatar slot="start">
+              <img [src]="t.picture">
+            </ion-avatar>
+            <ion-label>
+              <h2>Finn</h2>
+              <h3>{{t.role}}</h3>
+              <p class="description" [class.sel]="(selectedMemberType == 'mfa' && selectedIdx == i)">{{t.description}}</p>
+            </ion-label>
+          </ion-item>
+      </ion-list>
 
 </ion-content>

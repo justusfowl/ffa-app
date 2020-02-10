@@ -7,24 +7,3 @@
 app-home{
 
 }
-
-.announcement{
-
-  color: white;
-  text-align: center;
-  font-size: 12px;
-  background-color: gray;
-
-  .itm{
-    padding: 5px;
-  }
-
-  .itm.error{
-    background-color: var( --ion-color-primary-shade);
-  }
-
-  .itm.success{
-    background-color: var( --ion-color-success-shade);
-  }
-
-}

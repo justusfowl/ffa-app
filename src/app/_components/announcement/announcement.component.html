@@ -1,0 +1,11 @@
+<div class="announcement">
+    <div class="itm error" *ngIf="!isOpen" (click)="clickIsClosed($event)">
+        Wir haben aktuell geschlossen. 
+    </div>
+    <div class="itm success" *ngIf="isOpen" (click)="clickIsOpen($event)">
+        Wir haben aktuell geöffnet.
+    </div>
+    <div class="itm" *ngIf="generalAnnouncement.length > 0" (click)="clickGeneralAnnouncement($event)">
+        {{generalAnnouncement}}
+    </div> 
+</div>

@@ -5,62 +5,30 @@
     </ion-buttons>
     <ion-title>
       myFFA
+      
     </ion-title>
   </ion-toolbar>
-  <div class="announcement">
-     <div class="itm error">
-      test1 
-     </div>
-     <div class="itm">
-      test2
-      </div>
-  </div>
+  <app-announcement 
+    [isOpen]="true" 
+    (isClosedClick)="clickClosed($event)" 
+    (isOpenClick)="clickOpen($event)"
+  ></app-announcement>
 
 </ion-header>
 
 <ion-content>
 
-
-  <ion-card class="welcome-card">
-    <img src="/assets/shapes.svg" alt=""/>
+  <ion-card class="welcome-card" *ngFor="let n of news; let i=index;">
+    <img [src]="n.image" alt=""/>
     <ion-card-header>
-      <ion-card-subtitle>Get Started</ion-card-subtitle>
-      <ion-card-title>Welcome to Ionic</ion-card-title>
+      <ion-card-subtitle>{{n.header}}</ion-card-subtitle>
+      <ion-card-title>{{n.title}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p>
-        Now that your app has been created, you'll want to start building out features
-        and components. Check out some of the resources below for next steps.
+          {{n.text | trimLongStr:50}}
       </p>
     </ion-card-content>
   </ion-card>
-
-  <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt=""/>
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>
-          Now that your app has been created, you'll want to start building out features
-          and components. Check out some of the resources below for next steps.
-        </p>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="welcome-card">
-        <img src="/assets/shapes.svg" alt=""/>
-        <ion-card-header>
-          <ion-card-subtitle>Get Started</ion-card-subtitle>
-          <ion-card-title>Welcome to Ionic</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>
-            Now that your app has been created, you'll want to start building out features
-            and components. Check out some of the resources below for next steps.
-          </p>
-        </ion-card-content>
-      </ion-card>
 
 </ion-content>

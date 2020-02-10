@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'COACH_CHAT' | translate}}</ion-title>
+  </ion-toolbar>
+  <ion-progress-bar class="eval-progress" color="secondary" value="0.5"></ion-progress-bar>
+</ion-header>
+
+<ion-content >
+    <div id="chatboxparent" class="chats">
+      <div id="chatbox" class="chatbox">
+        <div *ngFor="let chat of chats">
+          <div class="message sent" *ngIf="chat.type!=='bot' && chat.isMe">
+            {{chat.message}}
+            <span class="metadata">
+              <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
+            </span>
+          </div>
+          <div class="message received"  *ngIf="chat.type =='bot' && !chat.isMe">
+            {{chat.message}}
+            <span class="metadata">
+              <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="answer-container">
+      
+      <div class="buttons">
+          <ion-button class="next-btn" (click)="sendMessage()" color="primary">OK</ion-button>
+      </div>
+    </div>
+
+</ion-content>

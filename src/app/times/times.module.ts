@@ -7,13 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { TimesPageRoutingModule } from './times-routing.module';
 
 import { TimesPage } from './times.page';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { AnnouncementModule } from '../_components/announcement/announcement.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TimesPageRoutingModule
+    TimesPageRoutingModule, 
+    TranslateModule.forChild(), 
+    AnnouncementModule
   ],
   declarations: [TimesPage]
 })

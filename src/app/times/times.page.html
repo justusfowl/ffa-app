@@ -3,10 +3,37 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>times</ion-title>
+    <ion-title>{{'OPENINGHOURS' | translate}}</ion-title>
   </ion-toolbar>
+  <app-announcement></app-announcement>
 </ion-header>
 
 <ion-content>
+
+  <div class="opening">
+      <div class="header">{{'OPENINGHOURS_WELCOME' | translate}}</div>
+      <div class="itm" *ngFor="let t of times; let i=index;" [class.isToday]="getIfIstoday(i)" [class.borderbottom]="i<times.length-1">
+
+        <div *ngIf="getIfIstoday(i)" class="todayflag">{{'TODAY' | translate}}</div>
+
+        <div class="day">{{t.day}}</div>
+
+        <div class="slot">{{t.vomiStart}} - {{t.vomiEnd}}</div>
+        <div class="slot" *ngIf="t.namiStart">{{t.namiStart}} - {{t.namiEnd}}</div>
+    
+      </div>
+  </div>
+
+  <div class="vacation">
+      <div class="header">{{'VACATION_WELCOME' | translate}}</div>
+      <div class="itm" *ngFor="let v of vacation; let i=index;" [class.borderbottom]="i<vacation.length-1">
+
+        <div class="title">{{v.title}}</div>
+  
+          <div class="slot">{{getVacationDisplay(v)}}</div>
+      
+        </div>
+  </div>
+  
 
 </ion-content>
