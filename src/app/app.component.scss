@@ -1,0 +1,82 @@
+ion-content{
+   --background: var(--ion-color-dark);
+}
+
+app-root{
+    --color: white;
+
+    ::-webkit-scrollbar {
+        width: 0px;  /* Remove scrollbar space */
+        background: transparent;  /* Optional: just make scrollbar invisible */
+    }
+}
+
+.user{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    flex-direction: column;
+    height: 30vh;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    
+    .avatar{
+        width: 100px; 
+        height: 100px; 
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-bottom: 20px;
+    }
+
+    .username, .profile{
+        color: white;
+    }
+
+    .username{
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .profile{
+        font-size: 12px;
+        text-decoration: underline;
+    }
+
+}
+
+.menu{
+    max-height:65vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    
+    .itm{
+        color: white;
+        padding: 20px 20px 20px 20px;
+        border-bottom: 1px solid #3c3c3c;
+        font-weight: 100;
+    }
+
+    .itm.selected{
+        background-color: #414141;
+        font-weight: 600;
+    }
+
+
+    ion-icon{
+        --color: white;
+        --background: white;
+    }
+}
+
+.build{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+
+    .settings{
+        font-size: 30px;
+        margin-left: 10px;
+    }
+}

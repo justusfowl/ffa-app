@@ -14,6 +14,26 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
+  },
+  {
+    path: 'times',
+    loadChildren: () => import('./times/times.module').then( m => m.TimesPageModule)
+  },
+  {
+    path: 'prescription',
+    loadChildren: () => import('./prescription/prescription.module').then( m => m.PrescriptionPageModule)
+  },
+  {
+    path: 'team',
+    loadChildren: () => import('./team/team.module').then( m => m.TeamPageModule)
+  },
+  {
+    path: 'appointments',
+    loadChildren: () => import('./appointments/appointments.module').then( m => m.AppointmentsPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   }
 ];
 
