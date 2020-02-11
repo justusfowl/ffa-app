@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TranslateConfigService } from '../services/translate-config.service';
 
 @Component({
   selector: 'app-settings',
@@ -8,7 +9,22 @@ import { ModalController } from '@ionic/angular';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(private modalCtrl:ModalController) { }
+  langs = [
+    
+    {
+      "key" : "de", 
+      "display" : "Deutsch"
+    },
+    {
+      "key" : "en", 
+      "display" : "English"
+    }
+  ]
+
+  constructor(
+    private modalCtrl:ModalController, 
+    public translateCfgSrv : TranslateConfigService
+    ) { }
 
   ngOnInit() {
   }
@@ -17,4 +33,7 @@ export class SettingsPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
+  handleLanguageChange(evt){
+    this.translateCfgSrv.setLanguage(evt);
+  }
 }

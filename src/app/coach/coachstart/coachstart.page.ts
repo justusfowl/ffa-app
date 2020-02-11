@@ -11,11 +11,13 @@ export class CoachstartPage implements OnInit {
 
   evals: any[] = [];
 
+
+
   constructor(
     public modalController : ModalController
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
 
     let pastEvals = [
       {
@@ -48,6 +50,8 @@ export class CoachstartPage implements OnInit {
     });
     return await modal.present();
   }
+
+
 
 
 }

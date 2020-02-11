@@ -1,13 +1,25 @@
 <ion-header>
   <ion-toolbar>
+      <ion-buttons slot="secondary">
+          <ion-button (click)="closeModal()">
+            <ion-icon class="icon" slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
     <ion-title>{{'COACH_CHAT' | translate}}</ion-title>
   </ion-toolbar>
-  <ion-progress-bar class="eval-progress" color="secondary" value="0.5"></ion-progress-bar>
+  <ion-progress-bar class="eval-progress" color="secondary" [value]="progressValue"></ion-progress-bar>
 </ion-header>
 
 <ion-content >
     <div id="chatboxparent" class="chats">
       <div id="chatbox" class="chatbox">
+        <div class="message received"  *ngIf="!profileComplete">
+          {{'CHAT_INITIAL_MASTERDATA' | translate}}
+          <ion-button (click)="openProfile($event)" color="primary">{{'PROFILE' | translate}}</ion-button>
+          <span class="metadata">
+            <span class="time">{{chatStartDate | date: 'HH:mm aaa'}}</span>
+          </span>
+        </div>
         <div *ngFor="let chat of chats">
           <div class="message sent" *ngIf="chat.type!=='bot' && chat.isMe">
             {{chat.message}}
@@ -22,13 +34,42 @@
             </span>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
 
-    <div class="answer-container">
+    <div class="answer-container" *ngIf="currentQuestion && profileComplete">
+
+      <div class="slider input-container" *ngIf="displayValuesRange.length > 0">
+          <ion-range min="1" max="5" step="1" snaps="true" ticks="true" color="primary"></ion-range>
+          <div class="values" >
+            <div class="val" *ngFor="let v of displayValuesRange;" >{{v.display}}</div>
+          </div>
+      </div>
+
+      <div class="slider input-container continuous" *ngIf="flagContinuousSlider">
+          <ion-range class="cont-range-slider" [(ngModel)]="answerObj.value"  [min]="currentQuestion.meta.min" [max]="currentQuestion.meta.max" [step]="currentQuestion.meta.steps" color="primary"></ion-range>
+          <div class="values" *ngIf="answerObj.value" >
+            {{answerObj.value | number:'1.0-0'}}
+          </div>
+      </div>
+
+      <div class="input-container" *ngIf="flagDateInput">
+          <ion-datetime class="date-input" value="2019-01-02" pickerFormat="D-M-YYYY" [placeholder]="'PLEASE_SELECT_DATE' | translate" (ionChange)="handleDatePicked($event)"></ion-datetime>
+      </div>
       
-      <div class="buttons">
-          <ion-button class="next-btn" (click)="sendMessage()" color="primary">OK</ion-button>
+      <div class="input-container"  *ngIf="displaySelect.length > 0">
+        <ion-select class="select-input" [placeholder]="'PLEASE_SELECT' | translate" (ionChange)="handleSelected($event)">
+          <ion-select-option [value]="v" *ngFor="let v of displaySelect;">{{v.display}}</ion-select-option>
+        </ion-select>
+      </div>
+
+      <div class="yes-no-btn" *ngIf="flagQuestionIsBinary">
+          <ion-button class="answerBtn" (click)="sendMessage()" color="primary">{{'YES' | translate}}</ion-button>
+          <ion-button class="answerBtn" (click)="sendMessage()" color="primary">{{'NO' | translate}}</ion-button>
+      </div>
+
+      <div class="buttons"  *ngIf="!flagQuestionIsBinary">
+        <ion-button expand="full" class="" (click)="submitAnswer()" color="primary" [disabled]="!answerObj.value">OK</ion-button>
       </div>
     </div>
 

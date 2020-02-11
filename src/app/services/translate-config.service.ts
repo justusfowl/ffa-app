@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TranslateConfigService {
 
+  language = new Subject();
+
   constructor(
-    private translate: TranslateService
+    public translate: TranslateService
   ) { }
 
   getDefaultLanguage(){
@@ -16,7 +19,9 @@ export class TranslateConfigService {
     return language;
   }
  
-  setLanguage(setLang) {
+  setLanguage(setLang) { 
     this.translate.use(setLang);
+    this.language.next(setLang)
   }
+
 }

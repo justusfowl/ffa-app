@@ -13,6 +13,90 @@
     "COACH_START" : "GesundheitsCoach", 
     "COACH_WELCOME" : "Willkommen beim GesundheitsCoach", 
     "COACH_INTRO" : "Bei dem GesundheitsCoach handelt es sich um eine Testversion einer Software, die Sie dabei unterstützen kann, ihr Wohlbefinden zu tracken und individualisierte Empfehlungen gibt, wie Sie sich in Zukunft noch besser fühlen können. Bei Interesse können Sie diese Ergebnisse mit einem unserer Ärzte beim nächsten Termin teilen.",
-    "COACH_CHAT" : "Neues Assessment"
+    "COACH_CHAT" : "Neues Assessment", 
+    "CHAT_INITIAL_MASTERDATA" : "Hallo, willkommen im Chat. Es sieht so aus, als benötigen wir noch einige Informationen über Sie. Bitte vervollständigen Sie ihr Profil.",
+    "CHAT_INITIAL_MASTERDATA_THANK" : "Vielen Dank, Ihre Daten sind auch für das nächste Mal gespeichert. Lassen Sie uns starten :)",
+    "COACH_CLOSE_HEADER" : "Abbrechen",
+    "COACH_CLOSE_MESSAGE" : "Soll der Coach abgebrochen werden? Die bisherigen Ergebnisse verfallen.",
+    "CANCEL" : "Abbrechen",
+    "OK" : "OK",
+    "YES" : "Ja",
+    "NO" : "Nein", 
+    "PLEASE_SELECT_DATE" : "Bitte Datum wählen", 
+    "PLEASE_SELECT" : "Bitte wählen", 
+    "LANGUAGE" : "Sprache",
+    "BIRTHDATE" : "Geburtsdatum", 
+    "States" : {
+        "1" : "Schleswig-Holstein",
+        "2" : "Hamburg",
+        "3" : "Niedersachsen",
+        "4" : "Bremen",
+        "5" : "Nordrhein-Westfalen",
+        "6" : "Hessen",
+        "7" : "Rheinland-Pfalz",
+        "8" : "Baden-Württemberg",
+        "9" : "Bayern",
+        "10" : "Saarland",
+        "11" : "Berlin",
+        "12" : "Brandenburg",
+        "13" : "Mecklenburg-Vorpommern",
+        "14" : "Sachsen",
+        "15" : "Sachsen-Anhalt",
+        "16" : "Thüringen",
+        "-97" : "Nicht angegeben"
+    }, 
+    "ProfEdu" : {
+        "-96":"(kein berufl. Abschluss)",
+        "1":"Anlernausbildung, berufliches Praktikum",
+        "10":"Meister/in, Techniker/in oder gleichwertiger Fachschulabschluss",
+        "11":"Fachschule der DDR",
+        "12":"Fachakademie (nur in Bayern)",
+        "13":"Berufsakademie",
+        "14":"Verwaltungsfachhochschule",
+        "15":"Fachhochschule (Ingenieurschule, Hochschule (FH) für angew. Wissenschaften)",
+        "16":"Universität (wissenschaftl. Hochschule/Kunsthochschule/Päd. Hochschule/Theol. Hochschule)",
+        "17":"Hochschulabschluss o.n.A. zur Art der Hochschule/Fachhochschule",
+        "18":"Abschluss ohne nähere Angabe",
+        "2":"Berufsvorbereitungsjahr",
+        "3":"Lehre, Berufsausbildung im dualen System",
+        "4":"Berufsqualifizierender Abschluss an einer Berufsfachschule, Kollegschule",
+        "5":"Vorbereitungsdienst für den mittleren Dienst in der öffentlichen Verwaltung",
+        "6":"Einjährig (z.B. Krankenpflegehelfer/in, Alterpflerger/in, Rettungsassistent/in)",
+        "7":"Zweijährig (z.B. Masseur/in, Medizinischer/Medizinische Bademeister/in, PTA, Podologe/Podologin)",
+        "8":"Dreijährig (z.B. Physiotherapie, Gesundheits- und Krankenpflege, MTA, Alternpflege)",
+        "9":"Ausbildungsstätten/Schulen für Erzieher/innen"
+
+    }, 
+    "JobType" : {
+        "-96":"z.Z. kein Beschäftigungsverhältnis",
+        "-97":"Nicht erhoben",
+        "1":"Unbefristetes Beschäftigungsverhältnis",
+        "2":"Befristetes Beschäftigungsverhältnis"
+    }, 
+    "SDhvtypD" : {
+        "1":"Ich selbst",
+        "2":"Es gibt keinen Hauptverdiener",
+        "3":"Meine Partnerin/Mein Partner",
+        "4":"Meine Mutter/Mein Vater",
+        "5":"Eine andere Person"
+    }, 
+    "SDmainstat": {
+        "10":"Erwerbstätig",
+        "20":"Arbeitslos",
+        "31":"Schüler, Student, Weiterbildung, unbez. Praktika",
+        "32":"Ruhestand, Vorruhestand",
+        "33":"Erwerbsunfähig",
+        "34":"Wehr- oder Zivildienst",
+        "35":"Hausfrau, -mann",
+        "36":"Aus and. Gründen nicht erwerbstätig"
+    }, 
+    "PAhhtype" : {
+        "10":"Ein-Personen-Haushalt",
+        "21":"Alleinerziehend mit Kind(ern) < 25 Jahre",
+        "22":"Paar ohne Kind(er) < 25 Jahre",
+        "23":"Paar mit Kind(ern) < 25 Jahre",
+        "24":"Paar oder Alleinerz. mit Kind(ern) < 25 J. und and. Personen im HH",
+        "25":"Anderer Haushaltstyp"
+    }
 
 }

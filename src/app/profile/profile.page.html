@@ -6,9 +6,133 @@
         </ion-button>
       </ion-buttons>
       <ion-title>my{{'PROFILE' | translate}}</ion-title>
+      <ion-buttons slot="end">
+          <ion-button (click)="saveDataAndClose()">
+            <ion-icon class="icon" slot="icon-only" name="checkmark"></ion-icon>
+          </ion-button>
+        </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen class="ion-padding">
+  <div *ngIf="currentUser">
+
+      <div class="user">
+
+        <img class="avatar" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+
+        <div class="username">
+          <ion-input  [(ngModel)]="currentUser.userName" placeholder="Username"></ion-input>
+        </div>
+
+      </div>
+
+      <ion-list>
+          <ion-list-header>
+              <ion-label>{{'BASE_PROFILE' | translate}}</ion-label>
+          </ion-list-header>
+
+          <ion-item>
+              <ion-label position="floating"> {{'BIRTHDATE' | translate}}</ion-label>
+              <ion-datetime class="date-input" [(ngModel)]="currentUser.birthdate" pickerFormat="D-M-YYYY" [placeholder]="'PLEASE_SELECT_DATE' | translate"></ion-datetime>
+            </ion-item>
+    
+            <ion-item>
+              <ion-label position="floating"> {{'GENDER' | translate}}</ion-label>
+              <ion-select class="select-input" [(ngModel)]="currentUser.sex" [placeholder]="'PLEASE_SELECT' | translate" >
+                <ion-select-option value="1" >{{'MALE' | translate}}</ion-select-option>
+                <ion-select-option value="2" >{{'FEMALE' | translate}}</ion-select-option>
+                <ion-select-option value="-97" >{{'DIVERSE' | translate}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+  
+            <ion-item>
+              <ion-label position="floating"> {{'STATE' | translate}}</ion-label>
+              <ion-select class="select-input" [(ngModel)]="currentUser.bula" [placeholder]="'PLEASE_SELECT' | translate" >
+                <ion-select-option [value]="state.value" *ngFor="let state of allStates;let i=index;" >{{ state.display | translate}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+  
+            <ion-item>
+                <ion-label position="floating"> {{'WEIGHT' | translate}} (kg)</ion-label>
+                <ion-input type="number" value="75" [(ngModel)]="currentUser.PAgewiB"></ion-input>
+            </ion-item>
+  
+            <ion-item>
+                <ion-label position="floating"> {{'SIZE' | translate}} (cm)</ion-label>
+                <ion-input type="number" value="170" [(ngModel)]="currentUser.PAgroe"></ion-input>
+            </ion-item>
+            
+      </ion-list>
+
+      <ion-list >
+
+          <ion-list-header>
+              <ion-label>{{'DETAILED_PROFILE' | translate}}</ion-label>
+          </ion-list-header>
+
+         
+
+          <ion-item>
+            <ion-label position="floating"> {{'INSURANCE' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.IAkv1D" [placeholder]="'PLEASE_SELECT' | translate" >
+              <ion-select-option value="1" >{{'GKV' | translate}}</ion-select-option>
+              <ion-select-option value="2" >{{'PKV_BEIHILFE' | translate}}</ion-select-option>
+              <ion-select-option value="3" >{{'DIVERSE' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating"> {{'PROFESSIONAL_EDUCATION' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.SDbild4C" [placeholder]="'PLEASE_SELECT' | translate" >
+                <ion-select-option [value]="profEducation.value" *ngFor="let profEducation of allProfEdu;let i=index;" >{{ profEducation.display | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"> {{'JOB' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.SDbverh2" [placeholder]="'PLEASE_SELECT' | translate" >
+                <ion-select-option [value]="job.value" *ngFor="let job of allJobTypes;let i=index;" >{{ job.display | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"> {{'BREADWINNER' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.SDhvtypD" [placeholder]="'PLEASE_SELECT' | translate" >
+                <ion-select-option [value]="itm.value" *ngFor="let itm of SDhvtypD;let i=index;" >{{ itm.display | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+         
+          <ion-item>
+            <ion-label position="floating"> {{'EMPLOYMENT' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.SDmainstat" [placeholder]="'PLEASE_SELECT' | translate" >
+                <ion-select-option [value]="itm.value" *ngFor="let itm of SDmainstat;let i=index;" >{{ itm.display | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"> {{'UNEMPLOYED_LAST_5_YEARS' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.SDalo" [placeholder]="'PLEASE_SELECT' | translate" >
+                <ion-select-option value="1" >{{'YES' | translate}}</ion-select-option>
+                <ion-select-option value="2" >{{'NO' | translate}}</ion-select-option>
+              </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"> {{'HOUSEHOLD_TYPE' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.PAhhtype" [placeholder]="'PLEASE_SELECT' | translate" >
+                <ion-select-option [value]="itm.value" *ngFor="let itm of PAhhtype;let i=index;" >{{ itm.display | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+      </ion-list>
+
+
+
+  </div>
+   
+
+     
 
 </ion-content>
+

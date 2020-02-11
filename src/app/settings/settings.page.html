@@ -9,6 +9,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen class="ion-padding">
+
+    <ion-list>
+
+        <ion-item>
+            <ion-label position="floating"> {{'LANGUAGE' | translate}}</ion-label>
+          <ion-select class="lang-input" [placeholder]="'LANGUAGE' | translate" [ngModel]="translateCfgSrv.translate.currentLang" (ngModelChange)="handleLanguageChange($event)">
+              <ion-select-option [value]="l.key" *ngFor="let l of langs;">{{l.display}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+       
+      </ion-list>
 
 </ion-content>

@@ -18,10 +18,16 @@ import { TranslateConfigService } from './services/translate-config.service';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
-
+import { DatePipe } from '@angular/common';
 import { PipesModule } from './services/pipes.module';
 import { ProfilePageModule } from './profile/profile.module';
 import { CoachchatPageModule } from './coach/coachchat/coachchat.module';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { DataService } from './services/dataservice';
+import { AuthService } from './services/auth.service';
+
+const config: SocketIoConfig = { url: 'http://localhost:8000', options: {} };
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +37,8 @@ import { CoachchatPageModule } from './coach/coachchat/coachchat.module';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule, 
-    TranslateModule.forRoot({
+    SocketIoModule.forRoot(config),
+    TranslateModule.forRoot({ 
       loader: {
         provide: TranslateLoader,
         useFactory: (HttpLoaderFactory),
@@ -47,7 +54,10 @@ import { CoachchatPageModule } from './coach/coachchat/coachchat.module';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
-    TranslateConfigService
+    TranslateConfigService, 
+    DatePipe, 
+    DataService, 
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

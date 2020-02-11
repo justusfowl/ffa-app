@@ -4,8 +4,10 @@ import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SettingsPage } from './settings/settings.page';
-import { TranslateService } from '@ngx-translate/core';
+
 import { ProfilePage } from './profile/profile.page';
+import { TranslateConfigService } from './services/translate-config.service';
+import { DataService } from './services/dataservice';
 
 @Component({
   selector: 'app-root',
@@ -52,11 +54,15 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar, 
     public modalController : ModalController,
-    translate : TranslateService
+    public translateCfgService : TranslateConfigService, 
+    private dataSrv : DataService
   ) {
 
     this.initializeApp();
-    translate.setDefaultLang('de');
+    let defaultLang = this.translateCfgService.getDefaultLanguage();
+    this.translateCfgService.setLanguage(defaultLang)
+    
+    this.dataSrv.initService();
 
   }
 
