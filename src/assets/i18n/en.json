@@ -18,6 +18,8 @@
     "CHAT_INITIAL_MASTERDATA_THANK" : "Thank you, we stored your data also for the next assessment. Let's start :)",
     "COACH_CLOSE_HEADER" : "Close",
     "COACH_CLOSE_MESSAGE" : "Shall the session be closed? You lose your answers until this point.",
+    "COACH_RESULT" : "Result",
+    "COACH_SCORE_COMPARE_GROUP" : "similar to you",
     "CANCEL" : "Cancel",
     "OK" : "OK",
     "YES" : "Yes",

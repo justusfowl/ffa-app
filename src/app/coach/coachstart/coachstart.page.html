@@ -20,7 +20,7 @@
     <h4 class="past-evals-title" *ngIf="evals.length > 0">Vergangene Analysen</h4>
 
     <div class="past-evals">
-      <div class="eval" *ngFor="let eval of evals; let i=index;">
+      <div class="eval" *ngFor="let eval of evals; let i=index;" (click)="goToEval(eval)">
         <div class="main">
             <div class="score">{{eval.score}}</div>
             <div class="unit">

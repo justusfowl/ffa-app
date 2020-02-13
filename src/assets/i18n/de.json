@@ -18,6 +18,8 @@
     "CHAT_INITIAL_MASTERDATA_THANK" : "Vielen Dank, Ihre Daten sind auch für das nächste Mal gespeichert. Lassen Sie uns starten :)",
     "COACH_CLOSE_HEADER" : "Abbrechen",
     "COACH_CLOSE_MESSAGE" : "Soll der Coach abgebrochen werden? Die bisherigen Ergebnisse verfallen.",
+    "COACH_RESULT" : "Ergebnis",
+    "COACH_SCORE_COMPARE_GROUP" : "ähnlich zu Ihnen",
     "CANCEL" : "Abbrechen",
     "OK" : "OK",
     "YES" : "Ja",

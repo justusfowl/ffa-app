@@ -56,6 +56,14 @@ export class CoachchatPage implements OnInit {
       this.setNewQuestion(question)
     });
 
+    this.dataSrv.socket.fromEvent('coach:progress').subscribe((data : any) => {
+      this.progressValue = data.perc;
+    });
+
+    this.dataSrv.socket.fromEvent('coach:complete').subscribe((data : any) => {
+      this.addToChat("COMPLETE", "bot", true)
+    });
+
   }
 
   checkProfileStatus(){
@@ -96,7 +104,7 @@ export class CoachchatPage implements OnInit {
     this.setNewQuestion(question)
   }
 
-  addToChat(msgText, origin){
+  addToChat(msgText, origin, complete=false){
 
     let self = this;
 
@@ -104,6 +112,7 @@ export class CoachchatPage implements OnInit {
       "message" : msgText, 
       "createdAt" : new Date(), 
       "type" : origin,
+      "complete" : complete,
       "isMe" : (origin != "bot")
     };
 
@@ -207,6 +216,18 @@ export class CoachchatPage implements OnInit {
 
   }
 
+  submitBinaryAnswer(id){
+    this.answerObj["key"] = id;
+
+    if (id == 1){
+      this.answerObj["value"] = this.translateCfgSrv.translate.instant("YES");
+    }else{
+      this.answerObj["value"] = this.translateCfgSrv.translate.instant("NO");
+    }
+
+    this.submitAnswer();
+  }
+
   submitAnswer(answerObj?){
 
     if (!answerObj){
@@ -270,6 +291,12 @@ export class CoachchatPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  goToEval(evt){
+
+    this.modalController.dismiss({"complete" : true})
+
   }
 
 }

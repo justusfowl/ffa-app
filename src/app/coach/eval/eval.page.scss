@@ -1,0 +1,64 @@
+ion-back-button{
+    --color	: white;
+}
+
+.beta{
+    color: var(--ion-color-secondary);
+    vertical-align: sub;
+    font-size: smaller;
+    font-weight: 100;
+}
+
+.result{
+    .score{
+        font-size: 130px;
+        text-align: center;
+        font-weight: 200;
+        margin-top: 40px;
+    }
+
+    .sub{
+        text-align: center;
+        color: gray;
+    }
+
+    .headline{
+        text-align: center;
+        
+        color: gray;
+    }
+
+    .recommendations{
+        margin-top: 30px;
+    }
+
+    .rec{
+        position: relative; 
+        position: relative;
+        padding: 40px 20px 40px 20px;
+        background-color: white;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+        .action{
+            max-width: 75%;
+        }
+
+        .effect{
+            position: absolute; 
+            right: 5px; 
+            bottom: 5px;
+            color: #659865;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            ion-icon {
+                font-size: 30px;
+            }
+        }
+    }
+
+}

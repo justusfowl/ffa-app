@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>eval</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{'COACH_RESULT' | translate}}</ion-title> 
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding ">
+
+  <div *ngIf="assessment" class="result">
+    <div class="score">
+      {{assessment.score}}
+    </div>
+    <div class="sub">
+        {{'COACH_SCORE_COMPARE_GROUP' | translate}}
+    </div>
+  
+    <div class="recommendations">
+  
+      <div class="rec" *ngFor="let r of assessment.recommendations; let i=index;">
+        <div class="action">
+          {{getAction(r)}}
+        </div>
+        <div class="effect">
+            {{r.boostFactorPerc | number:'1.0-0'}} %
+            <ion-icon name="arrow-round-up"></ion-icon>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 </ion-content>

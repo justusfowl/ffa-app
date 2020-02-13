@@ -44,7 +44,7 @@ const routes: Routes = [
     loadChildren: () => import('./coach/coachchat/coachchat.module').then( m => m.CoachchatPageModule)
   },
   {
-    path: 'eval',
+    path: 'coach/eval',
     loadChildren: () => import('./coach/eval/eval.module').then( m => m.EvalPageModule)
   },
   {

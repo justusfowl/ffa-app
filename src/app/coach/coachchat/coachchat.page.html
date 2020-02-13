@@ -29,6 +29,7 @@
           </div>
           <div class="message received"  *ngIf="chat.type =='bot' && !chat.isMe">
             {{chat.message}}
+            <ion-button *ngIf="chat.complete" (click)="goToEval($event)" color="primary">{{'GO_TO_EVAL' | translate}}</ion-button>
             <span class="metadata">
               <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
             </span>
@@ -64,8 +65,8 @@
       </div>
 
       <div class="yes-no-btn" *ngIf="flagQuestionIsBinary">
-          <ion-button class="answerBtn" (click)="sendMessage()" color="primary">{{'YES' | translate}}</ion-button>
-          <ion-button class="answerBtn" (click)="sendMessage()" color="primary">{{'NO' | translate}}</ion-button>
+          <ion-button class="answerBtn" (click)="submitBinaryAnswer(1)" color="primary">{{'YES' | translate}}</ion-button>
+          <ion-button class="answerBtn" (click)="submitBinaryAnswer(2)" color="primary">{{'NO' | translate}}</ion-button>
       </div>
 
       <div class="buttons"  *ngIf="!flagQuestionIsBinary">
