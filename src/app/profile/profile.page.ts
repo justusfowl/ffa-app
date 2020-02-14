@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { DataService } from '../services/dataservice';
+import { TranslateConfigService } from '../services/translate-config.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +23,9 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private modalCtrl:ModalController, 
-    private authService : AuthService) { }
+    private authService : AuthService, 
+    private dataSrv : DataService, 
+    private translateCfg : TranslateConfigService) { }
 
   ngOnInit() {
 
@@ -175,6 +179,20 @@ export class ProfilePage implements OnInit {
 
   saveDataAndClose(){
     console.log(this.currentUser);
+    let self = this; 
+    this.authService.updateProfile(this.currentUser)
+    .subscribe(
+      userData => {
+        this.dataSrv.showToast(this.translateCfg.translate.instant("PROFILE_UPDATE_SUCCESS"));
+        setTimeout(function(){
+          self.closeModal();
+        },1000)
+        this.dataSrv.setLoading(false);
+      },
+      error => {
+          this.dataSrv.setLoading(false);
+          console.error(error);
+      });
   }
 
 }

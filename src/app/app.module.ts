@@ -15,6 +15,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateConfigService } from './services/translate-config.service';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
@@ -26,6 +28,8 @@ import { CoachchatPageModule } from './coach/coachchat/coachchat.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { DataService } from './services/dataservice';
 import { AuthService } from './services/auth.service';
+import { JwtInterceptor } from './services/jwt.intercept';
+import { ErrorInterceptor } from './services/error.intercept';
 
 const config: SocketIoConfig = { url: 'http://localhost:8000', options: {} };
 
@@ -48,11 +52,15 @@ const config: SocketIoConfig = { url: 'http://localhost:8000', options: {} };
     SettingsPageModule, 
     ProfilePageModule,
     CoachchatPageModule,
-    PipesModule
+    PipesModule, 
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
     TranslateConfigService, 
     DatePipe, 

@@ -1,4 +1,6 @@
 {
+    "LOGIN_ERROR" : "Uups, das hat leider nicht geklappt - bitte erneut versuchen",
+    "LOGOUT" : "Abmelden",
     "PROFILE" : "Profil", 
     "APPOINTMENTS" : "Termine", 
     "TEAM" : "Team", 
@@ -10,6 +12,7 @@
     "TODAY" : "heute", 
     "OPENINGHOURS_WELCOME" : "An folgenden Tagen haben wir für Sie geöffnet.",
     "VACATION_WELCOME" : "An folgenden Tagen ist unsere Praxis geschlossen.", 
+
     "COACH_START" : "GesundheitsCoach", 
     "COACH_WELCOME" : "Willkommen beim GesundheitsCoach", 
     "COACH_INTRO" : "Bei dem GesundheitsCoach handelt es sich um eine Testversion einer Software, die Sie dabei unterstützen kann, ihr Wohlbefinden zu tracken und individualisierte Empfehlungen gibt, wie Sie sich in Zukunft noch besser fühlen können. Bei Interesse können Sie diese Ergebnisse mit einem unserer Ärzte beim nächsten Termin teilen.",
@@ -20,6 +23,10 @@
     "COACH_CLOSE_MESSAGE" : "Soll der Coach abgebrochen werden? Die bisherigen Ergebnisse verfallen.",
     "COACH_RESULT" : "Ergebnis",
     "COACH_SCORE_COMPARE_GROUP" : "ähnlich zu Ihnen",
+    "COACH_ASSESS_COMPLETE": "Super, Danke für Ihre Antworten - wir haben Empfehlungen für Sie. Klicken Sie dazu auf den Button:",
+    "COACH_GO_TO_EVAL": "Ansehen",
+
+
     "CANCEL" : "Abbrechen",
     "OK" : "OK",
     "YES" : "Ja",

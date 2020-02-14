@@ -1,0 +1,29 @@
+.welcome-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    svg{
+        margin-bottom: 20px;
+    }
+
+    h2{
+        text-align: center;
+
+    }
+
+    h4{
+        opacity: 0.5;
+    }
+}
+
+.welcome-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+.submit-btn{
+    --background: #a03c3f;
+}

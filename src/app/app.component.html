@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" [disabled]="!auth.isAuthorized()">
 
       <ion-content>
 
@@ -9,7 +9,7 @@
             <img class="avatar" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
 
             <div class="username">
-              JustusFowl
+              {{currentUserName}}
             </div>
             <div class="profile"  (click)="openProfile()">
               my{{'Profil' | translate}}
@@ -19,16 +19,25 @@
 
         <div class="menu">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-          <div class="itm"  
-            [routerDirection]="'root'" [routerLink]="[p.url]"
-             routerLinkActive="selected"
-            
-            >
+            <div class="itm"  
+              [routerDirection]="'root'" [routerLink]="[p.url]"
+              routerLinkActive="selected"
+              
+              >
 
-              {{p.title}}
-              <span class="beta" *ngIf="p.beta">&beta;eta</span>
+                {{p.title | translate}}
+                <span class="beta" *ngIf="p.beta">&beta;eta</span>
 
+            </div>
+          </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="true">
+
+          <div class="itm logout"  
+            (click)="auth.logout();">
+              {{"LOGOUT" | translate}}
           </div>
+          
         </ion-menu-toggle>
 
         </div>
@@ -36,6 +45,7 @@
         <div class="build">
 
           <span>0.2.1281</span>
+
           <ion-icon class="settings" name="cog" (click)="openSettings()"></ion-icon>
 
         </div>

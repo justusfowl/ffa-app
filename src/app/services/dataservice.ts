@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';
-import { AuthService } from './auth.service';
+import { HttpClient } from '@angular/common/http';
+import { TranslateConfigService } from './translate-config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,19 @@ export class DataService {
 
   message = '';
   messages = [];
-  currentUser = '';
 
+  loading : boolean = false;
+  loader : any; 
+
+  apiUrl = "http://localhost:8000/api/v01";
+
+ 
   constructor(
     public socket: Socket, 
     private toastCtrl: ToastController, 
-    private authService : AuthService
+    private http: HttpClient,
+    private loadingController: LoadingController, 
+    private translateCfg : TranslateConfigService
   ) {
 
    }
@@ -24,20 +32,12 @@ export class DataService {
    initService(){
     this.socket.connect();
  
-    let name = `user-${new Date().getTime()}`;
-    this.currentUser = name;
     
     this.socket.emit('set-name', name);
 
     this.socket.fromEvent('hb').subscribe(data => {
       this.showToast('data: ' + JSON.stringify(data));
     });
-
-    this.socket.fromEvent('userData').subscribe(data => {
-      this.showToast('data: ' + JSON.stringify(data));
-      this.authService.setUser(data);
-    });
-
 
 
    }
@@ -56,8 +56,74 @@ export class DataService {
     toast.present();
   }
 
+  async showError(msg) {
+    let toast = await this.toastCtrl.create({
+      message: msg,
+      position: 'top',
+      duration: 3000, 
+      color: "dark"
+    });
+    toast.present();
+  }
 
 
+
+  setLoading(isLoading){
+    this.loading = isLoading;
+
+    if (isLoading){
+      this.showLoading();
+    }else{
+      this.dismissLoader();
+    }
+  }
+
+  
+  dismissLoader(){
+    if (this.loader){
+      this.loader.dismiss();  
+    }
+  }
+
+  async showLoading(){
+      this.loader = await this.loadingController.create({
+        message: 'Please wait...',
+        duration: 2000
+      });
+      await this.loader.present();
+    
+  }
+
+
+  // REST Area 
+
+
+  get(endPoint){  
+    this.setLoading(true);
+
+    const api = this;
+
+    return new Promise(function(resolve, reject) {
+      
+      api.http.get(api.apiUrl + endPoint).subscribe(
+        (data: any) => {    
+          resolve(data)
+        },
+        error => {
+          api.handleAPIError(error);
+          reject(error)
+        }
+      )
+    });
+  }
+
+  
+  handleAPIError(error){
+    this.setLoading(false);
+    let msg = this.translateCfg.translate.instant("UNIVERSAL_API_ERROR");
+    this.showError(msg);
+    console.error(error);
+  }
 
 
 }

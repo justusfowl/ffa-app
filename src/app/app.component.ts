@@ -8,6 +8,8 @@ import { SettingsPage } from './settings/settings.page';
 import { ProfilePage } from './profile/profile.page';
 import { TranslateConfigService } from './services/translate-config.service';
 import { DataService } from './services/dataservice';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,9 @@ import { DataService } from './services/dataservice';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  currentUserName : string = ""; 
+
   public appPages = [
     {
       title: 'myFFA',
@@ -22,22 +27,22 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Termine',
+      title: 'APPOINTMENTS',
       url: '/appointments',
       icon: 'list'
     },
     {
-      title: 'Öffnungszeiten',
+      title: 'OPENINGHOURS',
       url: '/times',
       icon: 'list'
     },
     {
-      title: 'Rezepte',
+      title: 'PRESCRIPTIONS',
       url: '/prescription',
       icon: 'list'
     },
     {
-      title: 'Team',
+      title: 'TEAM',
       url: '/team',
       icon: 'list'
     },
@@ -55,7 +60,9 @@ export class AppComponent {
     private statusBar: StatusBar, 
     public modalController : ModalController,
     public translateCfgService : TranslateConfigService, 
-    private dataSrv : DataService
+    private dataSrv : DataService, 
+    public auth : AuthService, 
+    private router: Router
   ) {
 
     this.initializeApp();
@@ -63,6 +70,20 @@ export class AppComponent {
     this.translateCfgService.setLanguage(defaultLang)
     
     this.dataSrv.initService();
+
+    if (this.auth.isAuthorized()){
+      this.router.navigate(["/home"], { replaceUrl: true });
+    }
+
+    this.auth.currentUser.subscribe((x : any) => {
+
+      if(x){
+        this.currentUserName = x.userName
+      }else{
+        this.currentUserName = "";
+      }
+      
+    });
 
   }
 
@@ -75,24 +96,14 @@ export class AppComponent {
 
   async openSettings(ev: any) {
     const modal = await this.modalController.create({
-      component: SettingsPage,
-      componentProps: {
-        'firstName': 'Douglas',
-        'lastName': 'Adams',
-        'middleInitial': 'N'
-      }
+      component: SettingsPage
     });
     return await modal.present();
   }
 
   async openProfile(ev: any) {
     const modal = await this.modalController.create({
-      component: ProfilePage,
-      componentProps: {
-        'firstName': 'Douglas',
-        'lastName': 'Adams',
-        'middleInitial': 'N'
-      }
+      component: ProfilePage
     });
     return await modal.present();
   }

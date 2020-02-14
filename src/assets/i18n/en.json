@@ -1,4 +1,6 @@
 {
+    "LOGIN_ERROR" : "Oops, that didn't work - please try again.",
+    "LOGOUT" : "Logout",
     "PROFILE" : "Profile", 
     "APPOINTMENTS" : "Appointments", 
     "TEAM" : "Team", 
@@ -10,6 +12,7 @@
     "TODAY" : "today", 
     "OPENINGHOURS_WELCOME" : "We are available for you during the outlines times.",
     "VACATION_WELCOME" : "Our practice is closed during the following periodes.", 
+
     "COACH_START" : "HealthCoach", 
     "COACH_WELCOME" : "Welcome to the HealthCoach", 
     "COACH_INTRO" : "The HealthCoach is a test version of a software that can help you track your well-being and give you individualized recommendations on how to feel even better in the future. If you are interested, you can share these results with one of our doctors at your next appointment.",
@@ -20,6 +23,11 @@
     "COACH_CLOSE_MESSAGE" : "Shall the session be closed? You lose your answers until this point.",
     "COACH_RESULT" : "Result",
     "COACH_SCORE_COMPARE_GROUP" : "similar to you",
+    "COACH_ASSESS_COMPLETE": "Great, thank you for your answers, we have suggestions for you. Click here to view them:",
+    "COACH_GO_TO_EVAL": "Open",
+
+
+
     "CANCEL" : "Cancel",
     "OK" : "OK",
     "YES" : "Yes",

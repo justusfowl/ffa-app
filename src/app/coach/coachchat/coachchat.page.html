@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="secondary">
+      <ion-buttons slot="secondary" *ngIf="!assessmentComplete">
           <ion-button (click)="closeModal()">
             <ion-icon class="icon" slot="icon-only" name="close"></ion-icon>
           </ion-button>
@@ -29,7 +29,7 @@
           </div>
           <div class="message received"  *ngIf="chat.type =='bot' && !chat.isMe">
             {{chat.message}}
-            <ion-button *ngIf="chat.complete" (click)="goToEval($event)" color="primary">{{'GO_TO_EVAL' | translate}}</ion-button>
+            <ion-button *ngIf="chat.complete" (click)="goToEval($event)" color="primary">{{'COACH_GO_TO_EVAL' | translate}}</ion-button>
             <span class="metadata">
               <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
             </span>
@@ -38,7 +38,7 @@
       </div> 
     </div>
 
-    <div class="answer-container" *ngIf="currentQuestion && profileComplete">
+    <div class="answer-container" *ngIf="currentQuestion && profileComplete && !assessmentComplete">
 
       <div class="slider input-container" *ngIf="displayValuesRange.length > 0">
           <ion-range min="1" max="5" step="1" snaps="true" ticks="true" color="primary"></ion-range>
@@ -49,7 +49,7 @@
 
       <div class="slider input-container continuous" *ngIf="flagContinuousSlider">
           <ion-range class="cont-range-slider" [(ngModel)]="answerObj.value"  [min]="currentQuestion.meta.min" [max]="currentQuestion.meta.max" [step]="currentQuestion.meta.steps" color="primary"></ion-range>
-          <div class="values" *ngIf="answerObj.value" >
+          <div class="values" *ngIf="answerObj.value || answerObj.value == 0" >
             {{answerObj.value | number:'1.0-0'}}
           </div>
       </div>
@@ -70,7 +70,7 @@
       </div>
 
       <div class="buttons"  *ngIf="!flagQuestionIsBinary">
-        <ion-button expand="full" class="" (click)="submitAnswer()" color="primary" [disabled]="!answerObj.value">OK</ion-button>
+        <ion-button expand="full" class="" (click)="submitAnswer()" color="primary" [disabled]="isButtonDisabled(answerObj)">OK</ion-button>
       </div>
     </div>
 

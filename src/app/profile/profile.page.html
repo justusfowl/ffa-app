@@ -22,7 +22,7 @@
         <img class="avatar" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
 
         <div class="username">
-          <ion-input  [(ngModel)]="currentUser.userName" placeholder="Username"></ion-input>
+          <ion-label>{{currentUser.userName}}</ion-label>
         </div>
 
       </div>
@@ -33,35 +33,35 @@
           </ion-list-header>
 
           <ion-item>
-              <ion-label position="floating"> {{'BIRTHDATE' | translate}}</ion-label>
-              <ion-datetime class="date-input" [(ngModel)]="currentUser.birthdate" pickerFormat="D-M-YYYY" [placeholder]="'PLEASE_SELECT_DATE' | translate"></ion-datetime>
-            </ion-item>
-    
-            <ion-item>
-              <ion-label position="floating"> {{'GENDER' | translate}}</ion-label>
-              <ion-select class="select-input" [(ngModel)]="currentUser.sex" [placeholder]="'PLEASE_SELECT' | translate" >
-                <ion-select-option value="1" >{{'MALE' | translate}}</ion-select-option>
-                <ion-select-option value="2" >{{'FEMALE' | translate}}</ion-select-option>
-                <ion-select-option value="-97" >{{'DIVERSE' | translate}}</ion-select-option>
-              </ion-select>
-            </ion-item>
+            <ion-label position="floating"> {{'BIRTHDATE' | translate}}</ion-label>
+            <ion-datetime class="date-input" [(ngModel)]="currentUser.birthdate" pickerFormat="D-M-YYYY" [placeholder]="'PLEASE_SELECT_DATE' | translate"></ion-datetime>
+          </ion-item>
   
-            <ion-item>
-              <ion-label position="floating"> {{'STATE' | translate}}</ion-label>
-              <ion-select class="select-input" [(ngModel)]="currentUser.bula" [placeholder]="'PLEASE_SELECT' | translate" >
-                <ion-select-option [value]="state.value" *ngFor="let state of allStates;let i=index;" >{{ state.display | translate}}</ion-select-option>
-              </ion-select>
-            </ion-item>
-  
-            <ion-item>
-                <ion-label position="floating"> {{'WEIGHT' | translate}} (kg)</ion-label>
-                <ion-input type="number" value="75" [(ngModel)]="currentUser.PAgewiB"></ion-input>
-            </ion-item>
-  
-            <ion-item>
-                <ion-label position="floating"> {{'SIZE' | translate}} (cm)</ion-label>
-                <ion-input type="number" value="170" [(ngModel)]="currentUser.PAgroe"></ion-input>
-            </ion-item>
+          <ion-item>
+            <ion-label position="floating"> {{'GENDER' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.sex" [placeholder]="'PLEASE_SELECT' | translate" >
+              <ion-select-option value="1" >{{'MALE' | translate}}</ion-select-option>
+              <ion-select-option value="2" >{{'FEMALE' | translate}}</ion-select-option>
+              <ion-select-option value="-97" >{{'DIVERSE' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"> {{'STATE' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.bula" [placeholder]="'PLEASE_SELECT' | translate" >
+              <ion-select-option [value]="state.value" *ngFor="let state of allStates;let i=index;" >{{ state.display | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+              <ion-label position="floating"> {{'WEIGHT' | translate}} (kg)</ion-label>
+              <ion-input type="number" value="75" [(ngModel)]="currentUser.PAgewiB"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label position="floating"> {{'SIZE' | translate}} (cm)</ion-label>
+              <ion-input type="number" value="170" [(ngModel)]="currentUser.PAgroe"></ion-input>
+          </ion-item>
             
       </ion-list>
 

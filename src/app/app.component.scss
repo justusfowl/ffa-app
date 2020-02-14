@@ -35,6 +35,8 @@ app-root{
     .username{
         font-size: 14px;
         margin-bottom: 5px;
+        max-width: 95%;
+        overflow: hidden;
     }
 
     .profile{

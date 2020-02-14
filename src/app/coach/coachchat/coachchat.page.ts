@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { ModalController, AlertController } from '@ionic/angular';
 import { ProfilePage } from 'src/app/profile/profile.page';
 import { DataService } from 'src/app/services/dataservice';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-coachchat',
   templateUrl: './coachchat.page.html',
@@ -12,6 +13,7 @@ import { DataService } from 'src/app/services/dataservice';
 export class CoachchatPage implements OnInit {
 
   progressValue : number = 0.3;
+  assessmentComplete : boolean = false;
 
   profileComplete : boolean = false;
   chatStartDate : Date = new Date();
@@ -36,7 +38,8 @@ export class CoachchatPage implements OnInit {
     private datePipe : DatePipe, 
     private modalController : ModalController, 
     private dataSrv : DataService, 
-    public alertController: AlertController
+    public alertController: AlertController, 
+    private auth: AuthService
   ) { 
 
 
@@ -61,13 +64,23 @@ export class CoachchatPage implements OnInit {
     });
 
     this.dataSrv.socket.fromEvent('coach:complete').subscribe((data : any) => {
-      this.addToChat("COMPLETE", "bot", true)
+      this.assessmentComplete = true;
+      this.addToChat(this.translateCfgSrv.translate.instant("COACH_ASSESS_COMPLETE"), "bot", true)
     });
 
   }
 
   checkProfileStatus(){
-    return false
+    let profile = this.auth.currentUserValue; 
+
+    if (
+      profile.birthdate && profile.bula && profile.PAgewiB && profile.PAgroe && profile.sex
+    ){
+      return true;
+    }else{
+      return false;
+    }
+
   }
 
   startChat(){
@@ -297,6 +310,14 @@ export class CoachchatPage implements OnInit {
 
     this.modalController.dismiss({"complete" : true})
 
+  }
+
+  isButtonDisabled(val){
+    if (typeof(val.value) == "undefined"){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }

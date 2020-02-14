@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/dataservice';
 
 @Component({
   selector: 'app-team',
@@ -13,55 +14,23 @@ export class TeamPage implements OnInit {
   selectedMemberType : string = "";
   selectedIdx : number;
 
-  constructor() { }
+  constructor(
+    private dataSrv : DataService
+  ) { }
 
   ngOnInit() {
 
-    let docs = [
-      {
-        "name" : "Dr. Corinna Kaulfuss", 
-        "role" : "Facharzt für Allgemeinmedizin",
-        "picture" : "https://www.facharztpraxis-fuer-allgemeinmedizin.de/images/team/corinna_team.jpg", 
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ipsum sem, sodales rhoncus aliquet non, volutpat id lacus. Donec fringilla sit amet ante quis ultrices. Aenean suscipit, est id ultrices auctor, est ipsum efficitur dui, nec mollis risus neque ac mi. Integer est dui, tincidunt in lorem id, scelerisque semper urna."
-      },
-      {
-        "name" : "Dr. Stephanie Gärtner", 
-        "role" : "Facharzt für Allgemeinmedizin",
-        "picture" : "https://www.facharztpraxis-fuer-allgemeinmedizin.de/images/team/corinna_team.jpg", 
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ipsum sem, sodales rhoncus aliquet non, volutpat id lacus. Donec fringilla sit amet ante quis ultrices. Aenean suscipit, est id ultrices auctor, est ipsum efficitur dui, nec mollis risus neque ac mi. Integer est dui, tincidunt in lorem id, scelerisque semper urna."
-      },
-      {
-        "name" : "Dr. Corinna Kaulfuss", 
-        "role" : "Facharzt für Allgemeinmedizin",
-        "picture" : "https://www.facharztpraxis-fuer-allgemeinmedizin.de/images/team/corinna_team.jpg", 
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ipsum sem, sodales rhoncus aliquet non, volutpat id lacus. Donec fringilla sit amet ante quis ultrices. Aenean suscipit, est id ultrices auctor, est ipsum efficitur dui, nec mollis risus neque ac mi. Integer est dui, tincidunt in lorem id, scelerisque semper urna."
-      },
-    ];
+    this.getTeam();
 
-    let mfa = [
-      {
-        "name" : "Dr. Corinna Kaulfuss", 
-        "role" : "Facharzt für Allgemeinmedizin",
-        "picture" : "https://www.facharztpraxis-fuer-allgemeinmedizin.de/images/team/corinna_team.jpg", 
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ipsum sem, sodales rhoncus aliquet non, volutpat id lacus. Donec fringilla sit amet ante quis ultrices. Aenean suscipit, est id ultrices auctor, est ipsum efficitur dui, nec mollis risus neque ac mi. Integer est dui, tincidunt in lorem id, scelerisque semper urna."
-      },
-      {
-        "name" : "Dr. Stephanie Gärtner", 
-        "role" : "Facharzt für Allgemeinmedizin",
-        "picture" : "https://www.facharztpraxis-fuer-allgemeinmedizin.de/images/team/corinna_team.jpg",  
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ipsum sem, sodales rhoncus aliquet non, volutpat id lacus. Donec fringilla sit amet ante quis ultrices. Aenean suscipit, est id ultrices auctor, est ipsum efficitur dui, nec mollis risus neque ac mi. Integer est dui, tincidunt in lorem id, scelerisque semper urna."
-      },
-      {
-        "name" : "Dr. Corinna Kaulfuss", 
-        "role" : "Facharzt für Allgemeinmedizin",
-        "picture" : "https://www.facharztpraxis-fuer-allgemeinmedizin.de/images/team/corinna_team.jpg", 
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ipsum sem, sodales rhoncus aliquet non, volutpat id lacus. Donec fringilla sit amet ante quis ultrices. Aenean suscipit, est id ultrices auctor, est ipsum efficitur dui, nec mollis risus neque ac mi. Integer est dui, tincidunt in lorem id, scelerisque semper urna."
-      },
-    ];
+  }
 
-    this.teamDocs = docs; 
-    this.teamMfa = mfa;
-
+  getTeam(){
+    this.dataSrv.get("/team").then((data : any) => {
+      this.teamDocs = data;
+      this.teamMfa = data;
+    }).catch(err => {
+      console.error(err);
+    })
   }
 
   selectMember(type, idx){
