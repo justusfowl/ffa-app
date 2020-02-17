@@ -29,7 +29,7 @@
           </div>
           <div class="message received"  *ngIf="chat.type =='bot' && !chat.isMe">
             {{chat.message}}
-            <ion-button *ngIf="chat.complete" (click)="goToEval($event)" color="primary">{{'COACH_GO_TO_EVAL' | translate}}</ion-button>
+            <ion-button *ngIf="chat.complete" (click)="goToEval()" color="primary">{{'COACH_GO_TO_EVAL' | translate}}</ion-button>
             <span class="metadata">
               <span class="time">{{chat.createdAt | date: 'HH:mm aaa'}}</span>
             </span>
@@ -48,9 +48,9 @@
       </div>
 
       <div class="slider input-container continuous" *ngIf="flagContinuousSlider">
-          <ion-range class="cont-range-slider" [(ngModel)]="answerObj.value"  [min]="currentQuestion.meta.min" [max]="currentQuestion.meta.max" [step]="currentQuestion.meta.steps" color="primary"></ion-range>
-          <div class="values" *ngIf="answerObj.value || answerObj.value == 0" >
-            {{answerObj.value | number:'1.0-0'}}
+          <ion-range class="cont-range-slider" [(ngModel)]="answerObj.key"  [min]="currentQuestion.meta.min" [max]="currentQuestion.meta.max" [step]="currentQuestion.meta.steps" color="primary"></ion-range>
+          <div class="values" *ngIf="answerObj.key || answerObj.key == 0" >
+            {{answerObj.key | number:'1.0-0'}}
           </div>
       </div>
 
@@ -59,7 +59,7 @@
       </div>
       
       <div class="input-container"  *ngIf="displaySelect.length > 0">
-        <ion-select class="select-input" [placeholder]="'PLEASE_SELECT' | translate" (ionChange)="handleSelected($event)">
+        <ion-select [(ngModel)]="displaySelectedItem" class="select-input" [placeholder]="'PLEASE_SELECT' | translate" (ionChange)="handleSelected($event)">
           <ion-select-option [value]="v" *ngFor="let v of displaySelect;">{{v.display}}</ion-select-option>
         </ion-select>
       </div>

@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { DataService } from './dataservice';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+
+
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+    apiUrl: string ="";
+
     private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
 
   constructor(
     private http: HttpClient, 
-    private dataSrv : DataService, 
     private router: Router
 
     ) {
-        this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('userData')));
-        this.currentUser = this.currentUserSubject.asObservable();
+
+      this.apiUrl = environment.apiProtocol + '://' + environment.apiBase + ':' + environment.apiPort + "/api/v" + environment.apiVersion;
+      this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('userData')));
+      this.currentUser = this.currentUserSubject.asObservable();
    }
 
    initService(){
@@ -38,7 +43,7 @@ export class AuthService {
    }
 
    updateProfile(userData){
-    return this.http.put<any>(`${this.dataSrv.apiUrl}/profile/user`, { "user": userData })
+    return this.http.put<any>(`${this.apiUrl}/profile/user`, { "user": userData })
       .pipe(map( (resp : any) => {
 
           localStorage.setItem('userData', JSON.stringify(userData));
@@ -50,7 +55,7 @@ export class AuthService {
 
    login(userName, password) {
 
-    return this.http.post<any>(`${this.dataSrv.apiUrl}/auth/login`, { userName, password })
+    return this.http.post<any>(`${this.apiUrl}/auth/login`, { userName, password })
         .pipe(map( (resp : any) => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             let userData = resp.data; 
@@ -74,6 +79,11 @@ export class AuthService {
     }else{
         return false;
     }
+  }
+
+  public get token(){
+    let userObj = JSON.parse(localStorage.getItem('userData'));
+    return userObj.token;
   }
 
 }

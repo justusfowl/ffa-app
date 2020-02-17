@@ -71,7 +71,23 @@
               <ion-label>{{'DETAILED_PROFILE' | translate}}</ion-label>
           </ion-list-header>
 
-         
+          <ion-item>
+            <ion-label position="floating"> {{'MIbirthplace.LABEL' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.MIbirthplace" [placeholder]="'PLEASE_SELECT' | translate" >
+              <ion-select-option value="10" >{{'MIbirthplace.10' | translate}}</ion-select-option>
+              <ion-select-option value="22" >{{'MIbirthplace.21' | translate}}</ion-select-option>
+              <ion-select-option value="22" >{{'MIbirthplace.22' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"> {{'MIcitizen.LABEL' | translate}}</ion-label>
+            <ion-select class="select-input" [(ngModel)]="currentUser.MIcitizen" [placeholder]="'PLEASE_SELECT' | translate" >
+              <ion-select-option value="10" >{{'MIcitizen.10' | translate}}</ion-select-option>
+              <ion-select-option value="22" >{{'MIcitizen.21' | translate}}</ion-select-option>
+              <ion-select-option value="22" >{{'MIcitizen.22' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
 
           <ion-item>
             <ion-label position="floating"> {{'INSURANCE' | translate}}</ion-label>

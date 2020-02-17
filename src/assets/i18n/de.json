@@ -1,4 +1,6 @@
 {
+    "SOCKET_CONNECTED" : "Willkommen", 
+    "SOCKET_DISCONNECTED" : "Ups, sie scheinen nicht verbunden zu sein. Wir probieren es erneut.", 
     "LOGIN_ERROR" : "Uups, das hat leider nicht geklappt - bitte erneut versuchen",
     "LOGOUT" : "Abmelden",
     "PROFILE" : "Profil", 
@@ -22,11 +24,15 @@
     "COACH_CLOSE_HEADER" : "Abbrechen",
     "COACH_CLOSE_MESSAGE" : "Soll der Coach abgebrochen werden? Die bisherigen Ergebnisse verfallen.",
     "COACH_RESULT" : "Ergebnis",
-    "COACH_SCORE_COMPARE_GROUP" : "ähnlich zu Ihnen",
+    "COACH_SCORE_COMPARE_GROUP" : "Ihr Wohlfühl-Score",
     "COACH_ASSESS_COMPLETE": "Super, Danke für Ihre Antworten - wir haben Empfehlungen für Sie. Klicken Sie dazu auf den Button:",
+    "COACH_ASSESS_BADCOMPLETE" : "Leider ist etwas schief gelaufen, bitte erneut probieren",
     "COACH_GO_TO_EVAL": "Ansehen",
+    "COACH_NO_EVALS" : "Noch keine Analysen durchgeführt. Starten sie eine neue.",
 
-
+    "PLEASE_WAIT" : "Bitte warten",
+    "REFRESHING_PULL_ACTION" : "Ziehen zum Aktualisieren",
+    "REFRESHING_PULL" : "Aktualisieren",
     "CANCEL" : "Abbrechen",
     "OK" : "OK",
     "YES" : "Ja",
@@ -106,6 +112,18 @@
         "23":"Paar mit Kind(ern) < 25 Jahre",
         "24":"Paar oder Alleinerz. mit Kind(ern) < 25 J. und and. Personen im HH",
         "25":"Anderer Haushaltstyp"
+    }, 
+    "MIbirthplace" : {
+        "LABEL" : "Was ist Ihr Geburtsland?",
+        "10"  : "Deutschland", 
+        "21" : "Anderer EU Staat", 
+        "22" : "Nicht-EU Staat"
+    }, 
+    "MIcitizen" : {
+        "LABEL" : "Was ist Ihre Staatsangehörigkeit?",
+        "10"  : "Deutschland", 
+        "21" : "Nichtdeutsch, anderer EU Staat", 
+        "22" : "Nichtdeutsch, nicht-EU Staat"
     }
 
 }

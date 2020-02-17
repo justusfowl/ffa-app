@@ -1,10 +1,11 @@
 import { Component, OnInit  } from '@angular/core';
 import { TranslateConfigService } from 'src/app/services/translate-config.service';
 import { DatePipe } from '@angular/common';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, NavParams } from '@ionic/angular';
 import { ProfilePage } from 'src/app/profile/profile.page';
 import { DataService } from 'src/app/services/dataservice';
 import { AuthService } from 'src/app/services/auth.service';
+import { tick } from '@angular/core/testing';
 @Component({
   selector: 'app-coachchat',
   templateUrl: './coachchat.page.html',
@@ -14,6 +15,7 @@ export class CoachchatPage implements OnInit {
 
   progressValue : number = 0.3;
   assessmentComplete : boolean = false;
+  sessionId : any = "";
 
   profileComplete : boolean = false;
   chatStartDate : Date = new Date();
@@ -24,9 +26,12 @@ export class CoachchatPage implements OnInit {
 
   demoLastNum = 0;
 
+  sessionObj = {questions :[]}
+
   currentQuestion : any;
   displayValuesRange : any[] = [];
   displaySelect : any[] = [];
+  displaySelectedItem : any;
   flagQuestionIsBinary : boolean = false;
   flagDateInput : boolean = false;
   flagContinuousSlider : boolean = false;
@@ -39,24 +44,36 @@ export class CoachchatPage implements OnInit {
     private modalController : ModalController, 
     private dataSrv : DataService, 
     public alertController: AlertController, 
-    private auth: AuthService
+    private auth: AuthService, 
+    navParams: NavParams
   ) { 
 
+    console.log(navParams.get('sessionObj'));
+
+    if (typeof(navParams.get('sessionObj')) != "undefined"){
+      this.sessionObj = navParams.get('sessionObj');
+      this.dataSrv.coachGetQuestion(this.sessionObj);
+    }
 
   }
 
   ngOnInit() {
 
-    if (this.checkProfileStatus()){
-      this.profileComplete = true;
-      this.startChat();
-    }else{
-      this.profileComplete = false;
+    if (this.sessionObj.questions.length == 0){
+
+      if (this.checkProfileStatus()){
+        this.profileComplete = true;
+        this.startChat();
+      }else{
+        this.profileComplete = false;
+      }
+
     }
 
-    this.dataSrv.socket.fromEvent('coach:question').subscribe(question => {
-      console.log(question);
-      this.setNewQuestion(question)
+
+    this.dataSrv.socket.fromEvent('coach:question').subscribe((sessionObj : any)=> {
+      this.sessionObj = sessionObj;
+      this.setNewQuestion(sessionObj.nextQuestion)
     });
 
     this.dataSrv.socket.fromEvent('coach:progress').subscribe((data : any) => {
@@ -65,8 +82,15 @@ export class CoachchatPage implements OnInit {
 
     this.dataSrv.socket.fromEvent('coach:complete').subscribe((data : any) => {
       this.assessmentComplete = true;
+      this.sessionId = data._id;
       this.addToChat(this.translateCfgSrv.translate.instant("COACH_ASSESS_COMPLETE"), "bot", true)
     });
+
+    this.dataSrv.socket.fromEvent('coach:badcomplete').subscribe((data : any) => {
+      this.assessmentComplete = true;
+      this.addToChat(this.translateCfgSrv.translate.instant("COACH_ASSESS_BADCOMPLETE"), "bot", true)
+    });
+
 
   }
 
@@ -84,7 +108,7 @@ export class CoachchatPage implements OnInit {
   }
 
   startChat(){
-    this.dataSrv.coachGetQuestion();
+    this.dataSrv.coachGetQuestion(this.sessionObj);
   }
 
   scrollIntoView(){
@@ -142,7 +166,8 @@ export class CoachchatPage implements OnInit {
     this.flagQuestionIsBinary = false;
     this.flagDateInput = false;
     this.displayValuesRange.length = 0;
-    this.displaySelect.length = 0;
+    this.displaySelect = [];
+    this.displaySelectedItem = null;
 
     this.answerObj = {
       "varname" : question.varname, 
@@ -195,6 +220,7 @@ export class CoachchatPage implements OnInit {
     });
 
     this.displaySelect = selects;
+
   }
 
   handleDatePicked(evt){
@@ -210,6 +236,7 @@ export class CoachchatPage implements OnInit {
 
     this.answerObj["key"] =evt.detail.value.val;
     this.answerObj["value"] = evt.detail.value.display;
+
   }
 
   handleBinaryAnswer(answer){
@@ -248,13 +275,20 @@ export class CoachchatPage implements OnInit {
     }
 
     if (!answerObj.value){
-      console.error("No value passed for answerObj");
-      return;
+      if (typeof(answerObj.key) != "undefined"){
+        answerObj.value = answerObj.key;
+      }else{
+        console.error("No value passed for answerObj");
+        return;
+      }
     }
+
+    this.currentQuestion.response = this.answerObj;
+    this.sessionObj.questions.push(this.currentQuestion)
 
     this.addToChat(answerObj.value, "answer");
 
-    this.dataSrv.coachGetQuestion();
+    this.dataSrv.coachGetQuestion(this.sessionObj);
 
   }
 
@@ -306,9 +340,9 @@ export class CoachchatPage implements OnInit {
     await alert.present();
   }
 
-  goToEval(evt){
+  goToEval(){
 
-    this.modalController.dismiss({"complete" : true})
+    this.modalController.dismiss({"complete" : true, "_id" : this.sessionId})
 
   }
 

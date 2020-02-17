@@ -69,10 +69,11 @@ export class AppComponent {
     let defaultLang = this.translateCfgService.getDefaultLanguage();
     this.translateCfgService.setLanguage(defaultLang)
     
-    this.dataSrv.initService();
+    
 
     if (this.auth.isAuthorized()){
       this.router.navigate(["/home"], { replaceUrl: true });
+      this.dataSrv.initService();
     }
 
     this.auth.currentUser.subscribe((x : any) => {

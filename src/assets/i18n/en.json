@@ -1,4 +1,6 @@
 {
+    "SOCKET_CONNECTED" : "Welcome", 
+    "SOCKET_DISCONNECTED" : "Oops, you seem to be disconnected. We are retrying.", 
     "LOGIN_ERROR" : "Oops, that didn't work - please try again.",
     "LOGOUT" : "Logout",
     "PROFILE" : "Profile", 
@@ -22,12 +24,15 @@
     "COACH_CLOSE_HEADER" : "Close",
     "COACH_CLOSE_MESSAGE" : "Shall the session be closed? You lose your answers until this point.",
     "COACH_RESULT" : "Result",
-    "COACH_SCORE_COMPARE_GROUP" : "similar to you",
+    "COACH_SCORE_COMPARE_GROUP" : "your wellbeing score",
     "COACH_ASSESS_COMPLETE": "Great, thank you for your answers, we have suggestions for you. Click here to view them:",
+    "COACH_ASSESS_BADCOMPLETE" : "Sorry, something seems to have gone wrong. Please retry.",
     "COACH_GO_TO_EVAL": "Open",
+    "COACH_NO_EVALS" : "There are no analyses you have undertaken. Start a new one.",
 
-
-
+    "PLEASE_WAIT" : "Please wait",    
+    "REFRESHING_PULL_ACTION" : "Pull to refresh",
+    "REFRESHING_PULL" : "Refreshing",
     "CANCEL" : "Cancel",
     "OK" : "OK",
     "YES" : "Yes",
@@ -107,6 +112,18 @@
         "23":"Couple with child (ren) <25 years",
         "24":"Couple or Alleinerz. with child (ren) <25 J. and and. people in HH",
         "25":"Another type of household"        
+    }, 
+    "MIbirthplace" : {
+        "LABEL" : "What is your country of birth?",
+        "10"  : "Germany", 
+        "21" : "Other EU nation", 
+        "22" : "non-EU nation"
+    }, 
+    "MIcitizen" : {
+        "LABEL" : "What is your citizenship?",
+        "10"  : "German", 
+        "21" : "Other EU nation", 
+        "22" : "non-EU nation"
     }
 
 }

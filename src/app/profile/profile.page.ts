@@ -34,6 +34,7 @@ export class ProfilePage implements OnInit {
     this.setupJobType();
     this.setupSDhvtypD();
     this.setupPAhhtype();
+    this.setupSDmainstat();
 
     this.authService.currentUser.subscribe((x : any) => {
 

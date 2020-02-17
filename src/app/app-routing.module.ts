@@ -54,7 +54,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'coach/eval',
+    path: 'coach/eval/:sessionId',
     loadChildren: () => import('./coach/eval/eval.module').then( m => m.EvalPageModule), 
     canActivate: [AuthGuard]
   },

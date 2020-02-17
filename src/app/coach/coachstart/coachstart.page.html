@@ -3,11 +3,9 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>{{'COACH_START' | translate}}<span class="beta" > &beta;eta</span></ion-title>
+      <ion-title (click)="demoStartEval($event)">{{'COACH_START' | translate}}<span class="beta" > &beta;eta</span></ion-title>
     </ion-toolbar>
   </ion-header>
-
-<ion-content>
 
   <div class="ion-padding welcome">
 
@@ -19,10 +17,28 @@
 
     <h4 class="past-evals-title" *ngIf="evals.length > 0">Vergangene Analysen</h4>
 
+  </div>
+
+<ion-content class="ion-padding welcome">
+    <ion-refresher slot="fixed" (ionRefresh)="refreshSessions($event)">
+        <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="{{'REFRESHING_PULL_ACTION' | translate}}"
+        refreshingSpinner="circles"
+        refreshingText="{{'REFRESHING_PULL' | translate}}...">
+      </ion-refresher-content>
+    </ion-refresher>
+
     <div class="past-evals">
+
+      <div class="empty-evals" *ngIf="evals.length == 0">
+        {{'COACH_NO_EVALS' | translate}}
+      </div>
+ 
+
       <div class="eval" *ngFor="let eval of evals; let i=index;" (click)="goToEval(eval)">
         <div class="main">
-            <div class="score">{{eval.score}}</div>
+            <div class="score">{{eval.evaluation.score}}</div>
             <div class="unit">
               <div class="perc">
                 %
@@ -34,12 +50,12 @@
 
         </div>
         <div class="date">
-          {{formatDate(eval.evalDate)}}
+          {{formatDate(eval.evaluation.evalDate)}}
         </div>
 
       </div>
     </div>
 
-  </div>
+ 
 
 </ion-content>

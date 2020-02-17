@@ -31,7 +31,9 @@ import { AuthService } from './services/auth.service';
 import { JwtInterceptor } from './services/jwt.intercept';
 import { ErrorInterceptor } from './services/error.intercept';
 
-const config: SocketIoConfig = { url: 'http://localhost:8000', options: {} };
+import { environment } from '../environments/environment';
+
+const config: SocketIoConfig = { url: environment.apiProtocol + '://' + environment.apiBase + ':' + environment.apiPort, options: {} };
 
 @NgModule({
   declarations: [AppComponent],

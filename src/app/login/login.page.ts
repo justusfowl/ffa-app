@@ -50,6 +50,7 @@ export class LoginPage implements OnInit {
           .subscribe(
               userData => {
                   this.router.navigate(["/home"], { replaceUrl: true });
+                  this.dataSrv.initService();
                   this.dataSrv.setLoading(false);
               },
               error => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CoachchatPage } from '../coachchat/coachchat.page';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/dataservice';
 
 @Component({
   selector: 'app-coachstart',
@@ -12,96 +13,47 @@ export class CoachstartPage implements OnInit {
 
   evals: any[] = [];
 
-
-
   constructor(
     public modalController : ModalController, 
-    private router: Router
+    private router: Router, 
+    private dataSrv : DataService
   ) { }
 
   ngOnInit() {    
-
-    let pastEvals = [
-      {
-        "evalDate" : "03-20-2020",
-        "score" : 86, 
-        "recommendations" : [
-          {
-            "boostFactorPerc" : 5.42123, 
-            "varname" : "ABC",
-            "a_de" : "Essen Sie eine Portion mehr Obst pro Woche",
-            "a_en" : "Eat one more portion of fruit per week",
-          }, 
-          {
-            "boostFactorPerc" : 3.142123, 
-            "varname" : "DEF",
-            "a_de" : "Lassen Sie sich gegen Tetanus impfen.",
-            "a_en" : "Get a tetanus vaccination",
-          }, 
-          {
-            "boostFactorPerc" : 1.42123, 
-            "a_de" : "Rauchen Sie eine Zigarette weniger am Tag",
-            "a_en" : "Smoke one cigarette less per day",
-          }
-        ]
-      },
-      {
-        "evalDate" : "01-21-2020",
-        "score" : 83, 
-        "recommendations" : [
-          {
-            "boostFactorPerc" : 5.42123, 
-            "varname" : "ABC",
-            "a_de" : "Essen Sie eine Portion mehr Obst pro Woche",
-            "a_en" : "Eat one more portion of fruit per week",
-          }, 
-          {
-            "boostFactorPerc" : 3.142123, 
-            "varname" : "DEF",
-            "a_de" : "Lassen Sie sich gegen Tetanus impfen.",
-            "a_en" : "Get a tetanus vaccination",
-          }, 
-          {
-            "boostFactorPerc" : 1.42123, 
-            "a_de" : "Rauchen Sie eine Zigarette weniger am Tag",
-            "a_en" : "Smoke one cigarette less per day",
-          }
-        ]
-      },
-      {
-        "evalDate" : "02-01-2020",
-        "score" : 81, 
-        "recommendations" : [
-          {
-            "boostFactorPerc" : 5.42123, 
-            "varname" : "ABC",
-            "a_de" : "Essen Sie eine Portion mehr Obst pro Woche",
-            "a_en" : "Eat one more portion of fruit per week",
-          }, 
-          {
-            "boostFactorPerc" : 3.142123, 
-            "varname" : "DEF",
-            "a_de" : "Lassen Sie sich gegen Tetanus impfen.",
-            "a_en" : "Get a tetanus vaccination",
-          }, 
-          {
-            "boostFactorPerc" : 1.42123, 
-            "a_de" : "Rauchen Sie eine Zigarette weniger am Tag",
-            "a_en" : "Smoke one cigarette less per day",
-          }
-        ]
-      }
-    ];
-
-    this.evals = pastEvals;
-
+    this.getSessions();
   }
 
   formatDate(d){
     let date = new Date(d) as any;
 
-    return date.getDay() + "." + (parseInt(date.getMonth())+1) + ". '" + (date.getYear()-100);
+    return date.getDate() + "." + (parseInt(date.getMonth())+1) + "." + (date.getYear()-100);
   }
+
+  async demoStartEval(ev: any) {
+
+    const modal = await this.modalController.create({
+      component: CoachchatPage, 
+      componentProps: {
+        sessionObj : this.evals[0]
+      }
+    });
+
+    modal.onDidDismiss().then((result: any) => {
+      if (result.data){
+        if (result.data.complete) {
+          console.log('COMPLETE');
+          this.goToEval(result.data);
+        }
+
+        this.getSessions();
+      }
+    });
+    
+    await modal.present();
+
+
+  }
+
 
   async startEval(ev: any) {
 
@@ -115,9 +67,9 @@ export class CoachstartPage implements OnInit {
           console.log('COMPLETE');
           this.goToEval(result.data);
         }
+
+        this.getSessions();
       }
-
-
     });
     
     await modal.present();
@@ -125,8 +77,29 @@ export class CoachstartPage implements OnInit {
 
   }
 
-  goToEval(assessment){
-    this.router.navigate(['/coach/eval', assessment]);
+  goToEval(session){
+    this.router.navigate(['/coach/eval', session._id]);
+  }
+
+  getSessions(refresher?){
+    let enableLoader = true;
+    if (refresher){
+      enableLoader = false;
+    }
+    this.dataSrv.get("/coach/sessions", enableLoader).then((result : any) => {
+      this.evals = result;
+      if (refresher){
+        refresher.target.complete();
+      }
+    }).catch(err => {
+      if (refresher){
+        refresher.target.complete();
+      }
+    });
+  }
+
+  refreshSessions(evt){
+    this.getSessions(evt);
   }
 
 

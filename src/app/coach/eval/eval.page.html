@@ -9,17 +9,17 @@
 
 <ion-content class="ion-padding ">
 
-  <div *ngIf="assessment" class="result">
+  <div *ngIf="session" class="result">
     <div class="score">
-      {{assessment.score}}
+      {{getScore(session.evaluation.evalDetails) | number:'1.0-0'}}
     </div>
     <div class="sub">
         {{'COACH_SCORE_COMPARE_GROUP' | translate}}
     </div>
   
-    <div class="recommendations">
+    <div class="recommendations" *ngIf="session.recommendations">
   
-      <div class="rec" *ngFor="let r of assessment.recommendations; let i=index;">
+      <div class="rec" *ngFor="let r of session.recommendations; let i=index;">
         <div class="action">
           {{getAction(r)}}
         </div>

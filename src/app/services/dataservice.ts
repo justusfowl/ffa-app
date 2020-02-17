@@ -4,6 +4,7 @@ import { ToastController, LoadingController } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';
 import { HttpClient } from '@angular/common/http';
 import { TranslateConfigService } from './translate-config.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,26 +25,33 @@ export class DataService {
     private toastCtrl: ToastController, 
     private http: HttpClient,
     private loadingController: LoadingController, 
-    private translateCfg : TranslateConfigService
+    private translateCfg : TranslateConfigService, 
+    private auth : AuthService
   ) {
 
    }
 
    initService(){
-    this.socket.connect();
- 
-    
-    this.socket.emit('set-name', name);
-
+     
     this.socket.fromEvent('hb').subscribe(data => {
-      this.showToast('data: ' + JSON.stringify(data));
+      this.showToast(this.translateCfg.translate.instant("SOCKET_CONNECTED"));
     });
 
+    this.socket.fromEvent('connect').subscribe(data => {
+      let token = this.auth.token; 
+      this.socket.emit('authentication', { "token" : token })
+    });
+
+    this.socket.fromEvent('disconnect').subscribe(data => {
+      this.showToast(this.translateCfg.translate.instant("SOCKET_DISCONNECTED"));
+    });
+
+    this.socket.connect();
 
    }
 
-   coachGetQuestion(){
-     this.socket.emit('coach:ask')
+   coachGetQuestion(sessionObj){
+     this.socket.emit('coach:ask', sessionObj)
    }
 
 
@@ -87,7 +95,7 @@ export class DataService {
 
   async showLoading(){
       this.loader = await this.loadingController.create({
-        message: 'Please wait...',
+        message: this.translateCfg.translate.instant("PLEASE_WAIT")+"...",
         duration: 2000
       });
       await this.loader.present();
@@ -98,9 +106,11 @@ export class DataService {
   // REST Area 
 
 
-  get(endPoint){  
-    this.setLoading(true);
-
+  get(endPoint, enableLoader=true){  
+    if (enableLoader){
+      this.setLoading(true);
+    }
+    
     const api = this;
 
     return new Promise(function(resolve, reject) {
