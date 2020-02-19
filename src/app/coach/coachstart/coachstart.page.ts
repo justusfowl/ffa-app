@@ -29,7 +29,7 @@ export class CoachstartPage implements OnInit {
     return date.getDate() + "." + (parseInt(date.getMonth())+1) + "." + (date.getYear()-100);
   }
 
-  async demoStartEval(ev: any) {
+  async demoStartEval(ev?: any) {
 
     const modal = await this.modalController.create({
       component: CoachchatPage, 
@@ -55,7 +55,7 @@ export class CoachstartPage implements OnInit {
   }
 
 
-  async startEval(ev: any) {
+  async startEval(ev?: any) {
 
     const modal = await this.modalController.create({
       component: CoachchatPage

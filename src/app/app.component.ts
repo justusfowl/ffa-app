@@ -109,7 +109,7 @@ export class AppComponent {
     return await modal.present();
   }
 
-  async openProfile(ev: any) {
+  async openProfile(ev?: any) {
     const modal = await this.modalController.create({
       component: ProfilePage
     });

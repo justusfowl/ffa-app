@@ -37,7 +37,7 @@
 
           <ion-button *ngIf="!currentUser.validated" (click)="issueNewValidationEmail()">
               <ion-icon class="icon" slot="icon-only" name="refresh"></ion-icon>
-              {{SEND_EMAIL}}
+              {{'SEND_EMAIL' | translate}}
             </ion-button>
         </div>
 
