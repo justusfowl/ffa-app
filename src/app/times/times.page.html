@@ -5,10 +5,14 @@
     </ion-buttons>
     <ion-title>{{'OPENINGHOURS' | translate}}</ion-title>
   </ion-toolbar>
-  <app-announcement></app-announcement>
+  <app-announcement [isOpen]="getIsOpen()" [generalAnnouncement]="getIsVacationClosed()"></app-announcement>
 </ion-header>
 
 <ion-content>
+
+    <ion-refresher slot="fixed" (ionRefresh)="getTimes($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
   <div class="opening">
       <div class="header">{{'OPENINGHOURS_WELCOME' | translate}}</div>

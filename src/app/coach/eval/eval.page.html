@@ -17,14 +17,14 @@
         {{'COACH_SCORE_COMPARE_GROUP' | translate}}
     </div>
   
-    <div class="recommendations" *ngIf="session.recommendations">
+    <div class="recommendations" *ngIf="session.evaluation.suggestions">
   
-      <div class="rec" *ngFor="let r of session.recommendations; let i=index;">
+      <div class="rec" *ngFor="let r of session.evaluation.suggestions; let i=index;">
         <div class="action">
-          {{getAction(r)}}
+          {{getAction(r.meta)}}
         </div>
         <div class="effect">
-            {{r.boostFactorPerc | number:'1.0-0'}} %
+            {{r.delta*100 | number:'1.0-0'}} %
             <ion-icon name="arrow-round-up"></ion-icon>
         </div>
       </div>

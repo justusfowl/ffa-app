@@ -9,6 +9,10 @@
 
 <ion-content>
 
+    <ion-refresher slot="fixed" (ionRefresh)="getTeam($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
     <ion-list>
         <ion-list-header>
             {{'DOCS' | translate}}
@@ -36,7 +40,7 @@
               <img [src]="t.picture">
             </ion-avatar>
             <ion-label>
-              <h2>Finn</h2>
+              <h2>{{t.name}}</h2>
               <h3>{{t.role}}</h3>
               <p class="description" [class.sel]="(selectedMemberType == 'mfa' && selectedIdx == i)">{{t.description}}</p>
             </ion-label>

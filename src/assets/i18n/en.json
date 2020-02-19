@@ -1,4 +1,18 @@
 {
+    "WELCOME" : "Welcome",
+    "REGISTER" : "Register", 
+    "REGISTER_WELCOME" : "We are delighted to welcome you to our digital practice.",
+    "REGISTER_FOOT" : "Using our services, you accept our terms and conditions. Please reach out for more details about data handling and privacy here",
+    "REGISTER_USER_EXISTS" : "This username is already in use",
+    "REGISTER_STRONG_USER_PASSWORD" : "Please chose a valid email address as username and a strong passphrase (at least 8, including special characters)",
+    "REGISTER_USER_SUCCESS_WELCOME" : "Welcome to the Facharztpraxis für Allgemeinmedizin. Please check your mailbox and confirm your account. Only then can you use further services, such as appointment bookings.",
+    "PRIVACY" : "data privacy",
+    "PASSWORD" : "Password",
+    "OR" : "or",
+    "EMAIL_PLACEHOLDER" : "your@email.com",
+    "REGISTER_BTN" : "Register",
+    "TOKEN_EXPIRED" : "Your session is expired. For security reasons, please log in again.",
+    "UNIVERSAL_API_ERROR" : "Oops, something went wrong.",
     "SOCKET_CONNECTED" : "Welcome", 
     "SOCKET_DISCONNECTED" : "Oops, you seem to be disconnected. We are retrying.", 
     "LOGIN_ERROR" : "Oops, that didn't work - please try again.",
@@ -10,7 +24,7 @@
     "PRESCRIPTIONS" : "Prescriptions", 
     "SETTINGS" : "Settings", 
     "DOCS" : "Doctors", 
-    "MFAS" : "Medical Specialists", 
+    "MFAS" : "Medical Specialist Assistants", 
     "TODAY" : "today", 
     "OPENINGHOURS_WELCOME" : "We are available for you during the outlines times.",
     "VACATION_WELCOME" : "Our practice is closed during the following periodes.", 
@@ -30,6 +44,33 @@
     "COACH_GO_TO_EVAL": "Open",
     "COACH_NO_EVALS" : "There are no analyses you have undertaken. Start a new one.",
 
+    "MALE" : "male", 
+    "FEMALE" : "female", 
+    "DIVERSE" : "diverse",
+    "GENDER" : "Gender",
+    "STATE" : "State",
+    "WEIGHT" : "Weight", 
+    "SIZE" : "Size",
+    "BASE_PROFILE" : "Profile",
+    "DETAILED_PROFILE" : "Detailed profile",
+    "INSURANCE" : "Health insurance",
+    "PROFESSIONAL_EDUCATION" : "Professional education",
+    "JOB" : "Job",
+    "BREADWINNER" : "Breadwinner",
+    "EMPLOYMENT" : "Employment",
+    "UNEMPLOYED_LAST_5_YEARS" : "Unemployed i.l.5 years",
+    "HOUSEHOLD_TYPE" : "Household type",
+
+
+    "PKV_BEIHILFE" : "Private health insurance", 
+    "GKV" : "Statutory health insurance",
+
+    "PROFILE_UPDATE_SUCCESS" : "The profile has been updated",
+    "PROFILE_VALIDATE_EMAIL_SENT" : "We have sent you an email - please check your inbox.",
+    "USER_EMAIL_VALIDATED" : "Your email-address is validated.",
+    "USER_LOCALLY_VALIDATED" : "Your account was verified in our practice.",
+    "USER_NON_VALIDATED" : "Your account is not verified. Please check your mailbox or request a new verification link.",
+
     "PLEASE_WAIT" : "Please wait",    
     "REFRESHING_PULL_ACTION" : "Pull to refresh",
     "REFRESHING_PULL" : "Refreshing",
@@ -40,6 +81,10 @@
     "PLEASE_SELECT_DATE" : "Please select date", 
     "PLEASE_SELECT" : "Please select", 
     "LANGUAGE" : "Language",
+
+    "LOADING_MORE_DATA" : "More data...",
+    "CURRENTLY_CLOSED_VACATION" : "We are right back after our vacation",
+
     "BIRTHDATE" : "Birthdate", 
     "States" : {
         "1" : "Schleswig-Holstein",
@@ -58,10 +103,10 @@
         "14" : "Saxony",
         "15" : "Lower Saxony",
         "16" : "Thuringia",
-        "-97" : "Nicht angegeben"
+        "-97" : "Non-Germany"
     },
     "ProfEdu" : {
-        "-96":"(no skilled job trianing)",
+        
         "1":"Semi-skilled training, practical training",
         "10":"Master /, technician / specialist degree or equivalent in",
         "11":"College of the GDR",
@@ -79,7 +124,8 @@
         "6":"Annual (e.g. Krankenpflegehelfer / in, Alterpflerger / in, paramedic / in)",
         "7":"Biennial (e.g. ATM / in, Medical / balneotherapists / in, PTA, podiatrist / Podologin)",
         "8":"Three year (e.g., physical therapy, nurses, MTA, care of the elderly)",
-        "9":"Training centers / schools for educators / inside"        
+        "9":"Training centers / schools for educators / inside"        ,
+        "-96":"(no skilled job trianing)"
 
     }, 
     "JobType" : {
@@ -114,13 +160,13 @@
         "25":"Another type of household"        
     }, 
     "MIbirthplace" : {
-        "LABEL" : "What is your country of birth?",
+        "LABEL" : "Country of birth",
         "10"  : "Germany", 
         "21" : "Other EU nation", 
         "22" : "non-EU nation"
     }, 
     "MIcitizen" : {
-        "LABEL" : "What is your citizenship?",
+        "LABEL" : "Citizenship",
         "10"  : "German", 
         "21" : "Other EU nation", 
         "22" : "non-EU nation"

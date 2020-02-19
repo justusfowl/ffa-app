@@ -53,6 +53,19 @@ export class AuthService {
       }));
    }
 
+   register(userName, password){
+     
+    return this.http.post<any>(`${this.apiUrl}/auth/register`, { userName, password })
+    .pipe(map( (resp : any) => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        
+        let userData = resp.data;
+        localStorage.setItem('userData', JSON.stringify(userData));
+        this.currentUserSubject.next(userData);
+        return userData;
+    }));
+   }
+
    login(userName, password) {
 
     return this.http.post<any>(`${this.apiUrl}/auth/login`, { userName, password })

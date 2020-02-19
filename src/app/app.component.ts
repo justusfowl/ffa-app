@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   currentUserName : string = ""; 
+  userValidated : boolean = false;
 
   public appPages = [
     {
@@ -65,31 +66,37 @@ export class AppComponent {
     private router: Router
   ) {
 
-    this.initializeApp();
     let defaultLang = this.translateCfgService.getDefaultLanguage();
-    this.translateCfgService.setLanguage(defaultLang)
+    this.translateCfgService.setLanguage(defaultLang);
     
-    
-
-    if (this.auth.isAuthorized()){
-      this.router.navigate(["/home"], { replaceUrl: true });
-      this.dataSrv.initService();
-    }
-
-    this.auth.currentUser.subscribe((x : any) => {
-
-      if(x){
-        this.currentUserName = x.userName
-      }else{
-        this.currentUserName = "";
-      }
-      
-    });
+    this.initializeApp();
+   
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+
+      
+      if (this.auth.isAuthorized()){
+        this.router.navigate(["/home"], { replaceUrl: true });
+        this.dataSrv.initService();
+      }
+  
+      this.auth.currentUser.subscribe((x : any) => {
+  
+        if(x){
+          this.currentUserName = x.userName
+          this.userValidated = x.validated;
+        }else{
+          this.currentUserName = "";
+        }
+        
+      });
+
+
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

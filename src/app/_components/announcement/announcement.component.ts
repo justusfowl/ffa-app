@@ -10,6 +10,7 @@ export class AnnouncementComponent implements OnInit {
   @Input() isOpen: boolean = false;
   @Input() generalAnnouncement: string = "";
 
+
   @Output() isOpenClick: EventEmitter<any> = new EventEmitter();
   @Output() isClosedClick: EventEmitter<any> = new EventEmitter();
   @Output() isGeneralClick: EventEmitter<any> = new EventEmitter();

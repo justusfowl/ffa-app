@@ -33,7 +33,7 @@ export class EvalPage implements OnInit {
 
   loadSession(){
     let endPoint = "/coach/session/" + this.sessionId;
-    this.dataSrv.get(endPoint).then((res : any) => {
+    this.dataSrv.get(endPoint, true).then((res : any) => {
       this.session = res;
     }).catch(err => {
       console.error(err);
@@ -41,8 +41,8 @@ export class EvalPage implements OnInit {
   }
 
   getScore(evalDetails){
-    let predictedClass = evalDetails["predict"][0];
-    let scoring = evalDetails["p"+predictedClass][0];
+    let predictedClass = evalDetails["predict"];
+    let scoring = evalDetails["p"+predictedClass];
 
     let adjustedScoring = 0.5-scoring;
 
@@ -52,7 +52,7 @@ export class EvalPage implements OnInit {
 
 
   getAction(recommendation){
-    let targetCol = "a_" + this.translateCfgSrv.translate.currentLang;
+    let targetCol = "sug_" + this.translateCfgSrv.translate.currentLang;
     return recommendation[targetCol];
   }
 

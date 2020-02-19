@@ -24,10 +24,14 @@ export class TeamPage implements OnInit {
 
   }
 
-  getTeam(){
+  getTeam(refresher?){
     this.dataSrv.get("/team").then((data : any) => {
-      this.teamDocs = data;
-      this.teamMfa = data;
+      this.teamDocs = data.docs;
+      this.teamMfa = data.mfa;
+
+      if (refresher){
+        refresher.target.complete();
+      }
     }).catch(err => {
       console.error(err);
     })

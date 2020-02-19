@@ -11,7 +11,9 @@ export class TranslateConfigService {
 
   constructor(
     public translate: TranslateService
-  ) { }
+  ) {
+    
+   }
 
   getDefaultLanguage(){
     let language = this.translate.getBrowserLang();

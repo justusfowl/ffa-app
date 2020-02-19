@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/dataservice';
+import { TranslateConfigService } from '../services/translate-config.service';
 
 @Component({
   selector: 'app-times',
@@ -10,63 +12,27 @@ export class TimesPage implements OnInit {
   times : any[] = [];
   vacation : any[] = [];
 
-  constructor() { }
+  constructor(
+    private dataSrv : DataService, 
+    private translateCfg : TranslateConfigService
+  ) { }
 
   ngOnInit() {
-    let times = [
-      {
-        "day" : "Montag", 
-        "vomiStart" : "07:00", 
-        "vomiEnd" : "11:30",
-        "namiStart" : "14:00", 
-        "namiEnd" : "16:30",
-      },
-      {
-        "day" : "Dienstag", 
-        "vomiStart" : "07:00", 
-        "vomiEnd" : "11:30",
-        "namiStart" : "14:00", 
-        "namiEnd" : "16:30",
-      },
-      {
-        "day" : "Mittwoch", 
-        "vomiStart" : "07:00", 
-        "vomiEnd" : "11:30"
-      },
-      {
-        "day" : "Donnerstag", 
-        "vomiStart" : "07:00", 
-        "vomiEnd" : "11:30",
-        "namiStart" : "14:00", 
-        "namiEnd" : "16:30",
-      },
-      {
-        "day" : "Freitag", 
-        "vomiStart" : "07:00", 
-        "vomiEnd" : "11:30"
+    this.getTimes();
+  }
+
+  getTimes(refresher?){
+
+    this.dataSrv.get("/times").then((result : any) => {
+      this.times = result.opening;
+      this.vacation = result.vacation;
+
+      if (refresher){
+        refresher.target.complete();
       }
-    ]
-
-    let vacation = [
-      {
-        "vacationStart" : "01.01.2020", 
-        "vacationEnd" : "05.01.2020", 
-        "title" : "Neujahresurlaub"
-      },
-      {
-        "vacationStart" : "05.02.2020", 
-        "vacationEnd" : "10.03.2010", 
-        "title" : "Tralala"
-      },
-      {
-        "vacationStart" : "01.10.2020", 
-        "vacationEnd" : "05.11.2021", 
-        "title" : "Blabla Urlaub"
-      },
-    ]
-
-    this.times = times;
-    this.vacation = vacation;
+    }).catch(err => {
+      console.error(err);
+    })
 
   }
 
@@ -96,6 +62,67 @@ export class TimesPage implements OnInit {
     }else{
       return startDate.getDate() + "." + (startDate.getMonth()+1) + "." + (startDate.getYear()-100) + " - " + endDate.getDate() + "." + (endDate.getMonth()+1) + "." + (endDate.getYear()-100) 
     }
+
+  }
+
+  getIsOpen(){
+
+    let now = new Date(); 
+
+    let flagIsOpen = false;
+
+    let dayHrs = this.times[now.getDay()];
+
+    if (this.getIsVacationClosed() != ""){
+      return false;
+    }
+
+    if (dayHrs){
+
+      var currentTime = now.getHours() * 60 + now.getMinutes();
+
+      if (dayHrs.vomiStart){
+        let start = parseInt(dayHrs.vomiStart.substring(0,dayHrs.vomiStart.indexOf(":")))*60+parseInt(dayHrs.vomiStart.substring(dayHrs.vomiStart.indexOf(":")+1,dayHrs.vomiStart.length));
+        let end = parseInt(dayHrs.vomiEnd.substring(0,dayHrs.vomiEnd.indexOf(":")))*60+parseInt(dayHrs.vomiEnd.substring(dayHrs.vomiEnd.indexOf(":")+1,dayHrs.vomiEnd.length));
+  
+        if (start <= currentTime && currentTime <= end){
+          flagIsOpen = true;
+        }
+      }
+  
+      if (dayHrs.namiStart){
+        let start = parseInt(dayHrs.namiStart.substring(0,dayHrs.namiStart.indexOf(":")))*60+parseInt(dayHrs.namiStart.substring(dayHrs.namiStart.indexOf(":")+1,dayHrs.namiStart.length));
+        let end = parseInt(dayHrs.namiEnd.substring(0,dayHrs.namiEnd.indexOf(":")))*60+parseInt(dayHrs.namiEnd.substring(dayHrs.namiEnd.indexOf(":")+1,dayHrs.namiEnd.length));
+  
+        if (start <= currentTime && currentTime <= end){
+          flagIsOpen = true;
+        }
+      }
+  
+      return flagIsOpen;
+
+    }else{
+      return false;
+    }
+
+  }
+
+  getIsVacationClosed(){
+    let flagIsCurrentlyVacation = "";
+    let today = new Date();
+
+    this.vacation.forEach(element => {
+
+      let start = new Date(element.vacationStart);
+      let end = new Date(element.vacationEnd);
+
+      if (start <= today && start <= end){
+        flagIsCurrentlyVacation = this.translateCfg.translate.instant('CURRENTLY_CLOSED_VACATION');
+      }
+      
+    });
+
+    return flagIsCurrentlyVacation;
 
   }
   

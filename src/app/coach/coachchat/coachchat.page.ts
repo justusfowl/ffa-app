@@ -83,7 +83,8 @@ export class CoachchatPage implements OnInit {
     this.dataSrv.socket.fromEvent('coach:complete').subscribe((data : any) => {
       this.assessmentComplete = true;
       this.sessionId = data._id;
-      this.addToChat(this.translateCfgSrv.translate.instant("COACH_ASSESS_COMPLETE"), "bot", true)
+      this.addToChat(this.translateCfgSrv.translate.instant("COACH_ASSESS_COMPLETE"), "bot", true);
+      this.dataSrv.setLoading(false);
     });
 
     this.dataSrv.socket.fromEvent('coach:badcomplete').subscribe((data : any) => {

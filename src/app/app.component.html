@@ -12,7 +12,7 @@
               {{currentUserName}}
             </div>
             <div class="profile"  (click)="openProfile()">
-              my{{'Profil' | translate}}
+              my{{'Profil' | translate}} <ion-icon *ngIf="userValidated" class="validated" name="checkmark" ></ion-icon> <ion-icon *ngIf="!userValidated" class="pending" name="refresh"></ion-icon>
             </div>
 
         </div>

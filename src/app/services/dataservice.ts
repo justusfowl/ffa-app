@@ -15,7 +15,7 @@ export class DataService {
   messages = [];
 
   loading : boolean = false;
-  loader : any; 
+  loader : any = null; 
 
   apiUrl = "http://localhost:8000/api/v01";
 
@@ -32,6 +32,11 @@ export class DataService {
    }
 
    initService(){
+
+    this.socket.fromEvent('loading').subscribe(data => {
+      this.setLoading(true);
+      console.log("socket calls for loading..")
+    });
      
     this.socket.fromEvent('hb').subscribe(data => {
       this.showToast(this.translateCfg.translate.instant("SOCKET_CONNECTED"));
@@ -40,6 +45,11 @@ export class DataService {
     this.socket.fromEvent('connect').subscribe(data => {
       let token = this.auth.token; 
       this.socket.emit('authentication', { "token" : token })
+    });
+
+    this.socket.fromEvent('token:expired').subscribe(data => {
+      this.showToast(this.translateCfg.translate.instant("TOKEN_EXPIRED"));
+      this.auth.logout();
     });
 
     this.socket.fromEvent('disconnect').subscribe(data => {
@@ -55,11 +65,11 @@ export class DataService {
    }
 
 
-   async showToast(msg) {
+   async showToast(msg, duration=2000) {
     let toast = await this.toastCtrl.create({
       message: msg,
       position: 'top',
-      duration: 2000
+      duration: duration
     });
     toast.present();
   }
@@ -75,31 +85,52 @@ export class DataService {
   }
 
 
+  async setLoading(isLoading){
 
-  setLoading(isLoading){
-    this.loading = isLoading;
-
-    if (isLoading){
-      this.showLoading();
-    }else{
-      this.dismissLoader();
-    }
-  }
-
-  
-  dismissLoader(){
-    if (this.loader){
-      this.loader.dismiss();  
-    }
-  }
-
-  async showLoading(){
-      this.loader = await this.loadingController.create({
-        message: this.translateCfg.translate.instant("PLEASE_WAIT")+"...",
-        duration: 2000
-      });
-      await this.loader.present();
+    console.log(isLoading)
     
+    let api = this;
+    if (isLoading){
+      if (!api.loader && !api.loading){
+        api.loading = isLoading;
+        this.loader = await api.loadingController.create({
+          message: api.translateCfg.translate.instant("PLEASE_WAIT")+"..."
+        });
+        try{
+          await api.loader.present();
+        }catch(err){
+
+        }
+        
+      }
+    }else{
+      if (api.loader){
+        try{
+          await api.loader.dismiss()
+          .then(()=>{
+            api.loader = null;
+            api.loading = false;
+          })
+          .catch(e => console.log(e));
+        }catch(err){
+
+        }
+
+      }
+    }
+
+  }
+
+async  forceLoaderDismiss(){
+    if (this.loader){
+
+      await this.loader.dismiss()
+      .then(()=>{
+        this.loader = null;
+        this.loading = false;
+      })
+      .catch(e => console.log(e));;
+    }
   }
 
 
@@ -107,6 +138,7 @@ export class DataService {
 
 
   get(endPoint, enableLoader=true){  
+    this.loading = true;
     if (enableLoader){
       this.setLoading(true);
     }
@@ -116,10 +148,19 @@ export class DataService {
     return new Promise(function(resolve, reject) {
       
       api.http.get(api.apiUrl + endPoint).subscribe(
-        (data: any) => {    
+        (data: any) => { 
+          
+          api.loading = false;
+          if (enableLoader){
+            setTimeout(function(){
+              api.setLoading(false);
+            },500)
+          }
+
           resolve(data)
         },
         error => {
+          api.loading = false;
           api.handleAPIError(error);
           reject(error)
         }
@@ -129,10 +170,15 @@ export class DataService {
 
   
   handleAPIError(error){
-    this.setLoading(false);
-    let msg = this.translateCfg.translate.instant("UNIVERSAL_API_ERROR");
-    this.showError(msg);
-    console.error(error);
+    if (!error.flagHasActionHappened){
+      
+      let msg = this.translateCfg.translate.instant("UNIVERSAL_API_ERROR");
+      this.showError(msg);
+      console.error(error);
+    }
+
+    this.forceLoaderDismiss();
+
   }
 
 

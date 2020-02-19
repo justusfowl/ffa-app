@@ -4,21 +4,20 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { RegisterPageRoutingModule } from './register-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { LoginPage } from './login.page';
-
 import { PipesModule } from '../services/pipes.module';
+import { RegisterPage } from './register.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule, 
-    TranslateModule.forRoot(),
+    RegisterPageRoutingModule, 
+    TranslateModule.forChild(),
     PipesModule
   ],
-  declarations: [LoginPage]
+  declarations: [RegisterPage]
 })
-export class LoginPageModule {}
+export class RegisterPageModule {}

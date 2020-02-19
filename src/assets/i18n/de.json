@@ -1,4 +1,18 @@
-{
+{   
+    "WELCOME" : "Willkommen",
+    "REGISTER" : "Registrieren", 
+    "REGISTER_WELCOME" : "Wir freuen uns, Sie auch digital in unserer Praxis begrüßen zu dürfen.",
+    "REGISTER_FOOT" : "Mit der Nutzung unserer Dienste akzeptieren Sie unsere Allgemeinen Geschäftsbedingungen. Weitere Einzelheiten zur Datenverarbeitung und zum Datenschutz finden Sie hier",
+    "REGISTER_USER_EXISTS" : "Der Nutzername wird bereits verwendet",
+    "REGISTER_STRONG_USER_PASSWORD" : "Bitte wählen Sie eine Emailadresse und ein starkes Passwort (min. 8 Zeichen mit Sonderzeichen).",
+    "REGISTER_USER_SUCCESS_WELCOME" : "Herzlich Willkommen in der Facharztpraxis fuer Allgemeinmedizin. Bitte überprüfen Sie Ihr Postfach und bestätigen Sie ihr Konto. Erst danach können Sie weiterführende Dienste, wie Terminbuchungen, nutzen.",
+    "PRIVACY" : "Datenschutz",
+    "PASSWORD" : "Passwort",
+    "OR" : "oder",
+    "EMAIL_PLACEHOLDER" : "ihre@email.de",
+    "REGISTER_BTN" : "Registrieren",
+    "TOKEN_EXPIRED" : "Ihre Session ist abgelaufen. Zur Sicherheit loggen Sie sich bitte erneut ein.",
+    "UNIVERSAL_API_ERROR" : "Ups, etwas ist schief gelaufen",
     "SOCKET_CONNECTED" : "Willkommen", 
     "SOCKET_DISCONNECTED" : "Ups, sie scheinen nicht verbunden zu sein. Wir probieren es erneut.", 
     "LOGIN_ERROR" : "Uups, das hat leider nicht geklappt - bitte erneut versuchen",
@@ -30,6 +44,7 @@
     "COACH_GO_TO_EVAL": "Ansehen",
     "COACH_NO_EVALS" : "Noch keine Analysen durchgeführt. Starten sie eine neue.",
 
+
     "PLEASE_WAIT" : "Bitte warten",
     "REFRESHING_PULL_ACTION" : "Ziehen zum Aktualisieren",
     "REFRESHING_PULL" : "Aktualisieren",
@@ -40,6 +55,35 @@
     "PLEASE_SELECT_DATE" : "Bitte Datum wählen", 
     "PLEASE_SELECT" : "Bitte wählen", 
     "LANGUAGE" : "Sprache",
+    "MALE" : "männlich", 
+    "FEMALE" : "weiblich", 
+    "DIVERSE" : "diverse",
+    "GENDER" : "Geschlecht",
+    "STATE" : "Bundesland",
+    "WEIGHT" : "Körpergewicht", 
+    "SIZE" : "Körpergröße",
+    "BASE_PROFILE" : "Profil",
+    "DETAILED_PROFILE" : "Detailliertes Profil",
+    "INSURANCE" : "Krankenversicherung",
+    "PROFESSIONAL_EDUCATION" : "Berufsausbildung",
+    "JOB" : "Arbeitsstelle",
+    "BREADWINNER" : "Hauptverdiener",
+    "EMPLOYMENT" : "Arbeitsverhältnis",
+    "UNEMPLOYED_LAST_5_YEARS" : "Arbeitslos i.d.l. 5 Jahren",
+    "HOUSEHOLD_TYPE" : "Haushaltstyp",
+
+    "PKV_BEIHILFE" : "Privatversicherung", 
+    "GKV" : "Gesetzliche Versicherung",
+
+    "PROFILE_UPDATE_SUCCESS" : "Das Profil wurde aktualisiert",
+    "PROFILE_VALIDATE_EMAIL_SENT" : "Wir haben Ihnen eine eMail geschickt - bitte überprüfen Sie ihr Postfach",
+    "USER_EMAIL_VALIDATED" : "Ihre Emailadresse ist verifiziert",
+    "USER_LOCALLY_VALIDATED" : "Ihr Nutzer wurde in unserer Praxis verifiziert",
+    "USER_NON_VALIDATED" : "Ihr Account ist nicht veriziert. Bitte prüfen Sie das Postfach oder fordern Sie einen neuen Link an.",
+
+    "LOADING_MORE_DATA" : "Daten laden...",
+    "CURRENTLY_CLOSED_VACATION" : "Wir sind nach unseren Urlaubszeiten wieder für Sie da",
+    
     "BIRTHDATE" : "Geburtsdatum", 
     "States" : {
         "1" : "Schleswig-Holstein",
@@ -58,10 +102,9 @@
         "14" : "Sachsen",
         "15" : "Sachsen-Anhalt",
         "16" : "Thüringen",
-        "-97" : "Nicht angegeben"
+        "-97" : "Außerhalb v. Deutschland"
     }, 
     "ProfEdu" : {
-        "-96":"(kein berufl. Abschluss)",
         "1":"Anlernausbildung, berufliches Praktikum",
         "10":"Meister/in, Techniker/in oder gleichwertiger Fachschulabschluss",
         "11":"Fachschule der DDR",
@@ -79,7 +122,8 @@
         "6":"Einjährig (z.B. Krankenpflegehelfer/in, Alterpflerger/in, Rettungsassistent/in)",
         "7":"Zweijährig (z.B. Masseur/in, Medizinischer/Medizinische Bademeister/in, PTA, Podologe/Podologin)",
         "8":"Dreijährig (z.B. Physiotherapie, Gesundheits- und Krankenpflege, MTA, Alternpflege)",
-        "9":"Ausbildungsstätten/Schulen für Erzieher/innen"
+        "9":"Ausbildungsstätten/Schulen für Erzieher/innen",
+        "-96":"(kein berufl. Abschluss)"
 
     }, 
     "JobType" : {
@@ -114,13 +158,13 @@
         "25":"Anderer Haushaltstyp"
     }, 
     "MIbirthplace" : {
-        "LABEL" : "Was ist Ihr Geburtsland?",
+        "LABEL" : "Geburtsland",
         "10"  : "Deutschland", 
         "21" : "Anderer EU Staat", 
         "22" : "Nicht-EU Staat"
     }, 
     "MIcitizen" : {
-        "LABEL" : "Was ist Ihre Staatsangehörigkeit?",
+        "LABEL" : "Staatsangehörigkeit",
         "10"  : "Deutschland", 
         "21" : "Nichtdeutsch, anderer EU Staat", 
         "22" : "Nichtdeutsch, nicht-EU Staat"

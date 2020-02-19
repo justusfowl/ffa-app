@@ -12,6 +12,7 @@ import { TranslateConfigService } from '../services/translate-config.service';
 export class ProfilePage implements OnInit {
 
   currentUser : any;
+  currentUserInitial : any;
 
   allStates : any[] = [];
   allJobTypes : any[] = [];
@@ -40,6 +41,7 @@ export class ProfilePage implements OnInit {
 
       if(x){
         this.currentUser = x
+        this.currentUserInitial = JSON.parse(JSON.stringify(x));
       }
       
     });
@@ -174,6 +176,10 @@ export class ProfilePage implements OnInit {
 
   }
 
+  profileHasChanged(){
+    return JSON.stringify(this.currentUserInitial) != JSON.stringify(this.currentUser)
+  }
+
   closeModal(){
     this.modalCtrl.dismiss();
   }
@@ -194,6 +200,16 @@ export class ProfilePage implements OnInit {
           this.dataSrv.setLoading(false);
           console.error(error);
       });
+  }
+
+
+  issueNewValidationEmail(){
+    let self = this; 
+    this.dataSrv.get('/auth/getValidateEmail').then(result => {
+      this.dataSrv.showToast(this.translateCfg.translate.instant("PROFILE_VALIDATE_EMAIL_SENT"), 6000);
+    }).catch(err => {
+      console.error(err);
+    })
   }
 
 }

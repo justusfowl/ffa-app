@@ -41,9 +41,7 @@ const config: SocketIoConfig = { url: environment.apiProtocol + '://' + environm
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(),
-    AppRoutingModule, 
-    SocketIoModule.forRoot(config),
+    
     TranslateModule.forRoot({ 
       loader: {
         provide: TranslateLoader,
@@ -51,6 +49,10 @@ const config: SocketIoConfig = { url: environment.apiProtocol + '://' + environm
         deps: [HttpClient]
       }
     }),
+    IonicModule.forRoot(),
+    AppRoutingModule, 
+    SocketIoModule.forRoot(config),
+
     SettingsPageModule, 
     ProfilePageModule,
     CoachchatPageModule,

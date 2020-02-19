@@ -42,4 +42,16 @@ ion-select{
         text-decoration: underline;
     }
 
+    .validation{
+        text-align: center;
+    }
+
+    .success{
+        color: var(--ion-color-success);
+    }
+
+    .non-validated{
+        color: var(--ion-color-primary);
+    }
+
 }

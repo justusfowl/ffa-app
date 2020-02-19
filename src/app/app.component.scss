@@ -2,6 +2,10 @@ ion-content{
    --background: var(--ion-color-dark);
 }
 
+ion-split-pane{
+    background-color: #ebebf0;
+}
+
 app-root{
     --color: white;
 
@@ -40,14 +44,34 @@ app-root{
     }
 
     .profile{
+
         font-size: 12px;
         text-decoration: underline;
+        display: flex;
+        align-items: center;
+
+        .validated{
+            color: var(--ion-color-success);
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        .pending{
+            color: var(--ion-color-primary);
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        .success{
+            color: var(--ion-color-success);
+            font-size: 20px;
+            margin-left: 10px;
+        }
     }
 
 }
 
 .menu{
-    max-height:65vh;
     overflow: scroll;
     overflow-x: hidden;
     

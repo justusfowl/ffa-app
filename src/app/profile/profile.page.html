@@ -7,7 +7,7 @@
       </ion-buttons>
       <ion-title>my{{'PROFILE' | translate}}</ion-title>
       <ion-buttons slot="end">
-          <ion-button (click)="saveDataAndClose()">
+          <ion-button (click)="saveDataAndClose()"  *ngIf="profileHasChanged()">
             <ion-icon class="icon" slot="icon-only" name="checkmark"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -23,6 +23,22 @@
 
         <div class="username">
           <ion-label>{{currentUser.userName}}</ion-label>
+        </div>
+
+        <div class="validation">
+          <ion-label class="success" *ngIf="currentUser.validated">
+              <ion-icon  class="validated" name="checkmark" ></ion-icon>
+              {{'USER_EMAIL_VALIDATED' | translate}}
+            </ion-label>
+         
+          <ion-label class="success" *ngIf="currentUser.locallyValidated">{{'USER_LOCALLY_VALIDATED' | translate}}</ion-label>
+
+          <ion-label class="non-validated" *ngIf="!currentUser.validated">{{'USER_NON_VALIDATED' | translate}}</ion-label>
+
+          <ion-button *ngIf="!currentUser.validated" (click)="issueNewValidationEmail()">
+              <ion-icon class="icon" slot="icon-only" name="refresh"></ion-icon>
+              {{SEND_EMAIL}}
+            </ion-button>
         </div>
 
       </div>
