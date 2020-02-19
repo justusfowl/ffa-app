@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateConfigService } from './translate-config.service';
 import { AuthService } from './auth.service';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +19,7 @@ export class DataService {
   loading : boolean = false;
   loader : any = null; 
 
-  apiUrl = "http://localhost:8000/api/v01";
+  apiUrl: string ="";
 
  
   constructor(
@@ -28,7 +30,7 @@ export class DataService {
     private translateCfg : TranslateConfigService, 
     private auth : AuthService
   ) {
-
+    this.apiUrl = environment.apiProtocol + '://' + environment.apiBase + ':' + environment.apiPort + "/api/v" + environment.apiVersion;
    }
 
    initService(){
