@@ -102,7 +102,7 @@ export class AppComponent {
     });
   }
 
-  async openSettings(ev: any) {
+  async openSettings(ev?: any) {
     const modal = await this.modalController.create({
       component: SettingsPage
     });
