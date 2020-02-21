@@ -9,4 +9,16 @@
 
 <ion-content>
 
+    <div class="ion-padding no-data" *ngIf="prescriptions.length == 0">
+      <div class="text">
+        {{'NO_PRESCRIPTIONS' | translate}}
+      </div>
+      <ion-icon class="add" name="add"></ion-icon>
+      
+    </div>
+  
+    <ion-refresher slot="fixed" (ionRefresh)="getPrescriptions($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
 </ion-content>

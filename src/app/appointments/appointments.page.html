@@ -9,4 +9,16 @@
 
 <ion-content>
 
+  <div class="ion-padding no-data" *ngIf="appointments.length == 0">
+    <div class="text">
+      {{'NO_APPOINTMENTS' | translate}}
+    </div>
+    <ion-icon class="add" name="add"></ion-icon>
+    
+  </div>
+
+  <ion-refresher slot="fixed" (ionRefresh)="getAppointments($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
 </ion-content>

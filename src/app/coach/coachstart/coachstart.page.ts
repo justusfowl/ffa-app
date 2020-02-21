@@ -7,7 +7,7 @@ import { DataService } from 'src/app/services/dataservice';
 @Component({
   selector: 'app-coachstart',
   templateUrl: './coachstart.page.html',
-  styleUrls: ['./coachstart.page.scss'],
+  styleUrls: ['./coachstart.page.scss', '../../app.component.scss'],
 })
 export class CoachstartPage implements OnInit {
 
@@ -79,6 +79,13 @@ export class CoachstartPage implements OnInit {
 
   goToEval(session){
     this.router.navigate(['/coach/eval', session._id]);
+  }
+
+  removeEval(session){
+    this.dataSrv.delete("/coach/session/" + session._id).then(res => {
+      let currIdx = this.evals.findIndex(x => x == session);
+      this.evals.splice(currIdx, 1);
+    })
   }
 
   getSessions(refresher?){

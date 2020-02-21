@@ -1,8 +1,8 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" [disabled]="!auth.isAuthorized()">
+    <ion-menu contentId="main-content" type="push" [disabled]="!auth.isAuthorized()">
 
-      <ion-content>
+      <ion-content class="menu-content">
 
         <div class="user">
 

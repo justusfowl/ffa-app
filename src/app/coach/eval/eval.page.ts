@@ -24,7 +24,6 @@ export class EvalPage implements OnInit {
 
     this.route.params.subscribe(params => {
       this.sessionId = params.sessionId;
-      console.log(this.sessionId);
       this.loadSession();
     });
 
@@ -54,6 +53,22 @@ export class EvalPage implements OnInit {
   getAction(recommendation){
     let targetCol = "sug_" + this.translateCfgSrv.translate.currentLang;
     return recommendation[targetCol];
+  }
+
+  getActionDetails(recommendation){
+    let targetCol = "display_" + this.translateCfgSrv.translate.currentLang;
+
+    let initVal = recommendation["init_val_itm"][targetCol];
+    let newVal = recommendation["new_val_itm"][targetCol];
+
+    if (typeof(initVal) == "undefined" || typeof(initVal) == "undefined"){
+      return  recommendation["init_val_itm"]["key"] + " → " +  recommendation["new_val_itm"]["key"];
+    }else{
+      return initVal + " → " + newVal;
+    }
+
+   
+
   }
 
 }

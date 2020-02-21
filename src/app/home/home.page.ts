@@ -46,6 +46,12 @@ export class HomePage {
     })
   }
 
+  gotToNews(news?){
+    this.router.navigate(['/news-detail',news._id]);
+  }
+
+  
+
   getTimes(){
 
     this.dataSrv.get("/times").then((result : any) => {

@@ -31,7 +31,7 @@
 
     "COACH_START" : "HealthCoach", 
     "COACH_WELCOME" : "Welcome to the HealthCoach", 
-    "COACH_INTRO" : "The HealthCoach is a test version of a software that can help you track your well-being and give you individualized recommendations on how to feel even better in the future. If you are interested, you can share these results with one of our doctors at your next appointment.",
+    "COACH_INTRO" : "The HealthCoach is a test version of a software that can help you track your well-being and give you individualized recommendations on how to feel even better in the future. If you are interested, you can share these results with one of our doctors at your next appointment. The healthCoach is no substitute of a medical advice at any time. Please consult one of our doctors for advice.",
     "COACH_CHAT" : "New Assessment",
     "CHAT_INITIAL_MASTERDATA" : "Hello, welcome to chat. It looks like we need some more information about you. Please complete your profile.",
     "CHAT_INITIAL_MASTERDATA_THANK" : "Thank you, we stored your data also for the next assessment. Let's start :)",
@@ -43,6 +43,9 @@
     "COACH_ASSESS_BADCOMPLETE" : "Sorry, something seems to have gone wrong. Please retry.",
     "COACH_GO_TO_EVAL": "Open",
     "COACH_NO_EVALS" : "There are no analyses you have undertaken. Start a new one.",
+
+    "NO_APPOINTMENTS" : "No appointments scheduled yet.",
+    "NO_PRESCRIPTIONS" : "No prescription requests yet.",
 
     "MALE" : "male", 
     "FEMALE" : "female", 

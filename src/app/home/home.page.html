@@ -17,7 +17,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card class="welcome-card" *ngFor="let n of news; let i=index;">
+  <ion-card class="welcome-card" *ngFor="let n of news; let i=index;" (click)="gotToNews(n)">
     <img [src]="getImageUrl(n)" alt=""/>
     <ion-card-header>
       <ion-card-subtitle>{{n.header}}</ion-card-subtitle>

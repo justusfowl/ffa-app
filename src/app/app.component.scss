@@ -1,4 +1,4 @@
-ion-content{
+ion-content.menu-content{
    --background: var(--ion-color-dark);
 }
 
@@ -93,7 +93,7 @@ app-root{
         background-color: #414141;
         font-weight: 600;
     }
-
+ 
 
     ion-icon{
         --color: white;
@@ -111,5 +111,31 @@ app-root{
     .settings{
         font-size: 30px;
         margin-left: 10px;
+    }
+}
+
+.no-data{
+    height: 95vh;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .text{
+        font-size: 14px; 
+        color: gray;
+
+    }
+
+    ion-icon.add{
+        margin-top: 20px;
+        font-size: 20px;
+        background-color: #e3e3e3;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    ion-icon.add:active{
+        background-color: #bebebe;
     }
 }

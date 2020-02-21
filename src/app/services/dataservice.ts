@@ -88,8 +88,6 @@ export class DataService {
 
 
   async setLoading(isLoading){
-
-    console.log(isLoading)
     
     let api = this;
     if (isLoading){
@@ -138,6 +136,36 @@ async  forceLoaderDismiss(){
 
   // REST Area 
 
+  delete(endPoint, body?, enableLoader=true){
+
+    if (!body){
+      body = {};
+    }
+    const api = this;
+
+    return new Promise(function(resolve, reject) {
+      
+      api.http.delete(api.apiUrl + endPoint, body).subscribe(
+        (data: any) => { 
+          
+          api.loading = false;
+          if (enableLoader){
+            setTimeout(function(){
+              api.setLoading(false);
+            },500)
+          }
+
+          resolve(data)
+        },
+        error => {
+          api.loading = false;
+          api.handleAPIError(error);
+          reject(error)
+        }
+      )
+    });
+
+  }
 
   get(endPoint, enableLoader=true){  
     this.loading = true;

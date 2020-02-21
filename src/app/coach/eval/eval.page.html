@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
       <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title>{{'COACH_RESULT' | translate}}</ion-title> 
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>{{'COACH_RESULT' | translate}}</ion-title> 
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
 
   <div *ngIf="session" class="result">
     <div class="score">
-      {{getScore(session.evaluation.evalDetails) | number:'1.0-0'}}
+      {{session.evaluation.score | number:'1.0-0'}} / 5
     </div>
     <div class="sub">
         {{'COACH_SCORE_COMPARE_GROUP' | translate}}
@@ -22,6 +22,7 @@
       <div class="rec" *ngFor="let r of session.evaluation.suggestions; let i=index;">
         <div class="action">
           {{getAction(r.meta)}}
+          <p class="details">{{getActionDetails(r)}}</p>
         </div>
         <div class="effect">
             {{r.delta*100 | number:'1.0-0'}} %

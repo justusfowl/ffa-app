@@ -70,6 +70,10 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'news-detail/:newsId',
+    loadChildren: () => import('./news-detail/news-detail.module').then( m => m.NewsDetailPageModule)
   }
 ];
 

@@ -31,7 +31,7 @@
 
     "COACH_START" : "GesundheitsCoach", 
     "COACH_WELCOME" : "Willkommen beim GesundheitsCoach", 
-    "COACH_INTRO" : "Bei dem GesundheitsCoach handelt es sich um eine Testversion einer Software, die Sie dabei unterstützen kann, ihr Wohlbefinden zu tracken und individualisierte Empfehlungen gibt, wie Sie sich in Zukunft noch besser fühlen können. Bei Interesse können Sie diese Ergebnisse mit einem unserer Ärzte beim nächsten Termin teilen.",
+    "COACH_INTRO" : "Bei dem GesundheitsCoach handelt es sich um eine Testversion einer Software, die Sie dabei unterstützen kann, ihr Wohlbefinden zu tracken und individualisierte Empfehlungen gibt, wie Sie sich in Zukunft noch besser fühlen können. Bei Interesse können Sie diese Ergebnisse mit einem unserer Ärzte beim nächsten Termin teilen. Es stellt keinen Ersatz für eine medizinische Beratung dar. Bitte lassen Sie sich dazu einen Termin bei unseren Ärzten geben.",
     "COACH_CHAT" : "Neues Assessment", 
     "CHAT_INITIAL_MASTERDATA" : "Hallo, willkommen im Chat. Es sieht so aus, als benötigen wir noch einige Informationen über Sie. Bitte vervollständigen Sie ihr Profil.",
     "CHAT_INITIAL_MASTERDATA_THANK" : "Vielen Dank, Ihre Daten sind auch für das nächste Mal gespeichert. Lassen Sie uns starten :)",
@@ -44,6 +44,8 @@
     "COACH_GO_TO_EVAL": "Ansehen",
     "COACH_NO_EVALS" : "Noch keine Analysen durchgeführt. Starten sie eine neue.",
 
+    "NO_APPOINTMENTS" : "Noch keine Termine vereinbart",
+    "NO_PRESCRIPTIONS" : "Noch keine Rezeptbestellungen",
 
     "PLEASE_WAIT" : "Bitte warten",
     "REFRESHING_PULL_ACTION" : "Ziehen zum Aktualisieren",

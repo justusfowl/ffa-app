@@ -275,6 +275,11 @@ export class CoachchatPage implements OnInit {
       answerObj = this.answerObj;
     }
 
+    if (isNaN(answerObj.key)){
+      console.error("NaN value/key passed for answerObj");
+      return;
+    }
+
     if (!answerObj.value){
       if (typeof(answerObj.key) != "undefined"){
         answerObj.value = answerObj.key;

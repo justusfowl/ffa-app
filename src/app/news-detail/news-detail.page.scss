@@ -1,0 +1,22 @@
+ion-back-button{
+    --color: white;
+}
+
+.newsObj{
+    img{
+        height: 30vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+
+    .texts{
+        h1{
+            font-weight: 600;
+        }
+
+        .date{
+            font-size: 10px;
+            color: gray;
+        }
+    }
+}

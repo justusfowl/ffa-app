@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{NEWS_TITLE}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+  <div class="newsObj" *ngIf="newsObj">
+
+      <img [src]="getImageUrl(newsObj)" alt=""/>
+
+      <div class="texts ion-padding">
+          <h3 class="header">
+              {{newsObj.header}}
+          </h3>
+          <div class="date">
+            {{newsObj.date | date:'MMM d, y'}}
+          </div>
+          <h1 class="title">
+              {{newsObj.title}}
+          </h1>
+    
+          <div class="content">
+            {{newsObj.text}}
+          </div>
+      </div>
+  </div>
+  
+
+</ion-content>

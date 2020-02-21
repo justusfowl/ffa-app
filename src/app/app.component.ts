@@ -28,8 +28,8 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'APPOINTMENTS',
-      url: '/appointments',
+      title: 'TEAM',
+      url: '/team',
       icon: 'list'
     },
     {
@@ -38,13 +38,13 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'PRESCRIPTIONS',
-      url: '/prescription',
+      title: 'APPOINTMENTS',
+      url: '/appointments',
       icon: 'list'
     },
     {
-      title: 'TEAM',
-      url: '/team',
+      title: 'PRESCRIPTIONS',
+      url: '/prescription',
       icon: 'list'
     },
     {
