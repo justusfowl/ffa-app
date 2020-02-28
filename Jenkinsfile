@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'ionic build --prod'
+                sh "./node_modules/ionic/bin/ionic build --prod"
             }
         }
 
