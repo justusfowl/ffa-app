@@ -24,6 +24,12 @@ pipeline {
                 sh 'npm run build --prod'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh 'cp -rf www/* /ffa-app'
+            }
+        }
     }
 }
 
