@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                sh 'npm install ionic cordova'
+                sh 'npm install -g @ionic/cli'
             }
         }
         stage('Install') {
@@ -21,12 +21,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'npm run build --prod'
+                sh 'ionic build --prod'
             }
         }
 
         stage('Deploy') {
             steps {
+                sh 'rm -rf /ffa-app'
                 sh 'cp -rf www/* /ffa-app'
             }
         }

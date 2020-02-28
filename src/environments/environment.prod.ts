@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   apiProtocol: "https",
-  apiBase: "capvet.k-datacenter.de", 
+  apiBase: "beta.facharztpraxis-fuer-allgemeinmedizin.de", 
   apiVersion: "01", 
   apiPort : "443"
 };
