@@ -27,7 +27,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'rm -rf /ffa-app'
+                sh 'rm -rf /ffa-app/*'
                 sh 'cp -rf www/* /ffa-app'
             }
         }
