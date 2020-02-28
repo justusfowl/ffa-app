@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                sh 'npm install -g @ionic/cli'
+                sh 'npm install @ionic/cli'
             }
         }
         stage('Install') {
