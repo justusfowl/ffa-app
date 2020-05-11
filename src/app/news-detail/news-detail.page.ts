@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/dataservice';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-news-detail',
@@ -15,7 +16,8 @@ export class NewsDetailPage implements OnInit {
 
   constructor(
       private dataSrv: DataService, 
-      private route : ActivatedRoute
+      private route : ActivatedRoute, 
+      private sanitizer : DomSanitizer
   ) {
     
     this.route.params.subscribe(params => {
@@ -41,6 +43,10 @@ export class NewsDetailPage implements OnInit {
     }else{
       return "https://www.facharztpraxis-fuer-allgemeinmedizin.de/images/landing_img.png";
     }
+  }
+
+  sanText(inText){
+    return this.sanitizer.bypassSecurityTrustHtml(inText);
   }
 
 }

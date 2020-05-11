@@ -13,7 +13,7 @@
 
 <ion-content>
 
-  <ion-refresher slot="fixed" (ionRefresh)="getNews($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="refreshItems($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
@@ -25,12 +25,12 @@
     </ion-card-header>
     <ion-card-content>
       <p>
-          {{n.text | trimLongStr:50}}
+          {{getInnerText(n.text) | trimLongStr:50}}
       </p>
     </ion-card-content>
   </ion-card>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="getNews($event)">
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="refreshItems($event)">
       <ion-infinite-scroll-content
         loadingSpinner="bubbles"
         loadingText="{{'LOADING_MORE_DATA' | translate}}">

@@ -24,8 +24,7 @@
               {{newsObj.title}}
           </h1>
     
-          <div class="content">
-            {{newsObj.text}}
+          <div class="content" [innerHtml]="sanText(newsObj.text)">
           </div>
       </div>
   </div>

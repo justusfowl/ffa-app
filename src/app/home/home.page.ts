@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { DataService } from '../services/dataservice';
 import { TranslateConfigService } from '../services/translate-config.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements AfterViewInit{
 
   times : any[] = [];
   vacation : any[] = [];
@@ -24,7 +24,24 @@ export class HomePage {
   }
 
   ngOnInit(){
-    this.getNews();
+   
+
+  }
+
+  ngAfterViewInit(){
+    this.refreshItems();
+  }
+
+  
+  getInnerText(innerHtmlCode){
+    let c = document.createElement("div");
+    c.innerHTML = innerHtmlCode; 
+    return c.innerText;
+  }
+
+  refreshItems(refresher?){
+    this.getNews(refresher);
+    this.getTimes()
   }
 
   getNews(refresher?){
@@ -86,7 +103,8 @@ export class HomePage {
 
     let flagIsOpen = false;
 
-    let dayHrs = this.times[now.getDay()];
+    let dayHrs = this.times[this.times.findIndex(x => x.dayId == now.getDay())];
+    
 
     if (this.getIsVacationClosed() != ""){
       return false;
