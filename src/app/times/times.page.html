@@ -30,7 +30,7 @@
 
   <div class="vacation">
       <div class="header">{{'VACATION_WELCOME' | translate}}</div>
-      <div class="itm" *ngFor="let v of vacation; let i=index;" [class.borderbottom]="i<vacation.length-1">
+      <div class="itm" *ngFor="let v of vacationShow; let i=index;" [class.borderbottom]="i<vacationShow.length-1">
 
         <div class="title">{{v.title}}</div>
   

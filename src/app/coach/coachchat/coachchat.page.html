@@ -41,7 +41,7 @@
     <div class="answer-container" *ngIf="currentQuestion && profileComplete && !assessmentComplete">
 
       <div class="slider input-container" *ngIf="displayValuesRange.length > 0">
-          <ion-range min="1" max="5" step="1" snaps="true" ticks="true" color="primary"></ion-range>
+          <ion-range  min="1" max="5" step="1" snaps="true" ticks="true" color="primary"></ion-range>
           <div class="values" >
             <div class="val" *ngFor="let v of displayValuesRange;" >{{v.display}}</div>
           </div>
@@ -55,22 +55,22 @@
       </div>
 
       <div class="input-container" *ngIf="flagDateInput">
-          <ion-datetime class="date-input" value="2019-01-02" pickerFormat="D-M-YYYY" [placeholder]="'PLEASE_SELECT_DATE' | translate" (ionChange)="handleDatePicked($event)"></ion-datetime>
+          <ion-datetime [disabled]="submissionLoadingState" class="date-input" value="2019-01-02" pickerFormat="D-M-YYYY" [placeholder]="'PLEASE_SELECT_DATE' | translate" (ionChange)="handleDatePicked($event)"></ion-datetime>
       </div>
       
       <div class="input-container"  *ngIf="displaySelect.length > 0">
-        <ion-select [(ngModel)]="displaySelectedItem" class="select-input" [placeholder]="'PLEASE_SELECT' | translate" (ionChange)="handleSelected($event)">
+        <ion-select [disabled]="submissionLoadingState" [(ngModel)]="displaySelectedItem" class="select-input" [placeholder]="'PLEASE_SELECT' | translate" (ionChange)="handleSelected($event)">
           <ion-select-option [value]="v" *ngFor="let v of displaySelect;">{{v.display}}</ion-select-option>
         </ion-select>
       </div>
 
       <div class="yes-no-btn" *ngIf="flagQuestionIsBinary">
-          <ion-button class="answerBtn" (click)="submitBinaryAnswer(1)" color="primary">{{'YES' | translate}}</ion-button>
-          <ion-button class="answerBtn" (click)="submitBinaryAnswer(2)" color="primary">{{'NO' | translate}}</ion-button>
+          <ion-button class="answerBtn" [disabled]="submissionLoadingState" (click)="submitBinaryAnswer(1)" color="primary">{{'YES' | translate}}</ion-button>
+          <ion-button class="answerBtn" [disabled]="submissionLoadingState" (click)="submitBinaryAnswer(2)" color="primary">{{'NO' | translate}}</ion-button>
       </div>
 
       <div class="buttons"  *ngIf="!flagQuestionIsBinary">
-        <ion-button expand="full" class="" (click)="submitAnswer()" color="primary" [disabled]="isButtonDisabled(answerObj)">OK</ion-button>
+        <ion-button expand="full" class="" (click)="submitAnswer()" color="primary" [disabled]="isButtonDisabled(answerObj) || submissionLoadingState">OK</ion-button>
       </div>
     </div>
 

@@ -11,6 +11,7 @@ export class TimesPage implements OnInit {
 
   times : any[] = [];
   vacation : any[] = [];
+  vacationShow : any[] = [];
 
   constructor(
     private dataSrv : DataService, 
@@ -26,6 +27,7 @@ export class TimesPage implements OnInit {
     this.dataSrv.get("/times").then((result : any) => {
       this.times = result.opening;
       this.vacation = result.vacation;
+      this.vacationShow = result.vacation.filter(x => !x.flagHoliday);
 
       if (refresher){
         refresher.target.complete();

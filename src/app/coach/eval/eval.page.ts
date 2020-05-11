@@ -49,6 +49,10 @@ export class EvalPage implements OnInit {
     return outletScore;
   }
 
+  getEffectNumber(r : any){
+    return Math.ceil(r.delta*100)
+  }
+
 
   getAction(recommendation){
     let targetCol = "sug_" + this.translateCfgSrv.translate.currentLang;

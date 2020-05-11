@@ -13,6 +13,8 @@ import { tick } from '@angular/core/testing';
 })
 export class CoachchatPage implements OnInit {
 
+  submissionLoadingState : boolean = false;
+
   progressValue : number = 0.3;
   assessmentComplete : boolean = false;
   sessionId : any = "";
@@ -73,11 +75,13 @@ export class CoachchatPage implements OnInit {
 
     this.dataSrv.socket.fromEvent('coach:question').subscribe((sessionObj : any)=> {
       this.sessionObj = sessionObj;
-      this.setNewQuestion(sessionObj.nextQuestion)
+      this.setNewQuestion(sessionObj.nextQuestion);
+      this.submissionLoadingState = false;
     });
 
     this.dataSrv.socket.fromEvent('coach:progress').subscribe((data : any) => {
       this.progressValue = data.perc;
+      this.submissionLoadingState = false;
     });
 
     this.dataSrv.socket.fromEvent('coach:complete').subscribe((data : any) => {
@@ -85,11 +89,13 @@ export class CoachchatPage implements OnInit {
       this.sessionId = data._id;
       this.addToChat(this.translateCfgSrv.translate.instant("COACH_ASSESS_COMPLETE"), "bot", true);
       this.dataSrv.setLoading(false);
+      this.submissionLoadingState = false;
     });
 
     this.dataSrv.socket.fromEvent('coach:badcomplete').subscribe((data : any) => {
       this.assessmentComplete = true;
-      this.addToChat(this.translateCfgSrv.translate.instant("COACH_ASSESS_BADCOMPLETE"), "bot", true)
+      this.addToChat(this.translateCfgSrv.translate.instant("COACH_ASSESS_BADCOMPLETE"), "bot", true);
+      this.submissionLoadingState = false;
     });
 
 
@@ -294,7 +300,10 @@ export class CoachchatPage implements OnInit {
 
     this.addToChat(answerObj.value, "answer");
 
+    this.submissionLoadingState = true;
+
     this.dataSrv.coachGetQuestion(this.sessionObj);
+
 
   }
 
