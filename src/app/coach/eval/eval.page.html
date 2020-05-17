@@ -10,19 +10,25 @@
 <ion-content class="ion-padding ">
 
   <div *ngIf="session" class="result">
+
     <div class="score">
       {{session.evaluation.score | number:'1.0-0'}} / 5
     </div>
+
     <div class="sub">
         {{'COACH_SCORE_COMPARE_GROUP' | translate}}
+    </div>
+
+    <div class="sub sug-text">
+        {{getCoachScoreCallToAction()}}
     </div>
   
     <div class="recommendations" *ngIf="session.evaluation.suggestions">
   
       <div class="rec" *ngFor="let r of session.evaluation.suggestions; let i=index;">
-        <div class="action">
+        <div class="action" >
           {{getAction(r.meta)}}
-          <p class="details">{{getActionDetails(r)}}</p>
+          <p class="details" *ngIf="getActionDetails(r)">{{getActionDetails(r)}}</p>
         </div>
         <div class="effect">
             {{getEffectNumber(r) | number:'1.0-0'}} %

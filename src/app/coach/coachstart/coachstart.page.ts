@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CoachchatPage } from '../coachchat/coachchat.page';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { DataService } from 'src/app/services/dataservice';
 
 @Component({
@@ -79,6 +79,15 @@ export class CoachstartPage implements OnInit {
 
   goToEval(session){
     this.router.navigate(['/coach/eval', session._id]);
+  }
+
+  evalAgain(session){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        reevaluate: true
+      }
+    };
+    this.router.navigate(['/coach/eval', session._id], navigationExtras);
   }
 
   removeEval(session){

@@ -44,6 +44,11 @@
     "COACH_GO_TO_EVAL": "Open",
     "COACH_NO_EVALS" : "There are no analyses you have undertaken. Start a new one.",
 
+    "COACH_ACTION_BAD_SCORE" : "We would like to help you feel better in the future. In the following list you will find wellness recommendations tailored to your needs, which we have determined based on your answers.",
+    "COACH_ACTION_GOOD_SCORE" : "It already looks good - of course we would like to continue to support you in making you feel even better in the future. In the following list you will find wellness recommendations tailored to your needs, which we have determined based on your answers.",
+    "COACH_ACTION_GREAT_SCORE" : "Wow - that looks great already. We would like to support you in continuing to feel so good in the future. In the following list you will find wellness recommendations tailored to your needs, which we have determined based on your answers.",
+    "COACH_ACTION_NO_SCORE" : "It seems something went wrong with your analysis. Please try again - also make sure that all your personal data is stored in your profile.",
+
     "NO_APPOINTMENTS" : "No appointments scheduled yet.",
     "NO_PRESCRIPTIONS" : "No prescription requests yet.",
 
@@ -68,6 +73,7 @@
     "PKV_BEIHILFE" : "Private health insurance", 
     "GKV" : "Statutory health insurance",
 
+    "PROFILE_COACH_INCOMPLETE" : "Please fill all the fields, in order to use the Health Coach",
     "PROFILE_UPDATE_SUCCESS" : "The profile has been updated",
     "PROFILE_VALIDATE_EMAIL_SENT" : "We have sent you an email - please check your inbox.",
     "USER_EMAIL_VALIDATED" : "Your email-address is validated.",

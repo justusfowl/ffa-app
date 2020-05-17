@@ -58,33 +58,15 @@
           </ion-item>
       
           <ion-item-options side="end">
+              <ion-item-option class="delete-btn" expandable (click)="evalAgain(eval)">
+                  <ion-icon slot="icon-only" name="repeat"></ion-icon>
+                </ion-item-option>
+                
               <ion-item-option class="delete-btn" expandable (click)="removeEval(eval)">
                 <ion-icon slot="icon-only" name="trash"></ion-icon>
               </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
-
-        <!--
-      <div class="eval" *ngFor="let eval of evals; let i=index;" (click)="goToEval(eval)">
-        <div class="main">
-            <div class="score">{{eval.evaluation.score}}</div>
-            <div class="unit">
-              <div class="perc">
-                %
-              </div>
-              <div class="group">
-                  in your group
-              </div>
-            </div>
-
-        </div>
-        <div class="date">
-          {{formatDate(eval.evaluation.evalDate)}}
-        </div>
-
-      </div>
-        -->
-
     </div>
 
  

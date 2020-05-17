@@ -102,10 +102,23 @@ export class CoachchatPage implements OnInit {
   }
 
   checkProfileStatus(){
-    let profile = this.auth.currentUserValue; 
+    let profile = this.auth.currentUserValue;
 
     if (
-      profile.birthdate && profile.bula && profile.PAgewiB && profile.PAgroe && profile.sex
+      typeof(profile.birthdate) != "undefined" && 
+      typeof(profile.bula) != "undefined"  && 
+      typeof(profile.PAgewiB) != "undefined"  && 
+      typeof(profile.PAgroe) != "undefined"  && 
+      typeof(profile.sex) != "undefined"  && 
+      typeof(profile.MIbirthplace) != "undefined"  && 
+      typeof(profile.MIcitizen) != "undefined"  && 
+      typeof(profile.IAkv1D) != "undefined"  && 
+      typeof(profile.SDbild4C) != "undefined"  && 
+      typeof(profile.SDbverh2) != "undefined"  && 
+      typeof(profile.SDhvtypD) != "undefined"  && 
+      typeof(profile.SDmainstat) != "undefined"  && 
+      typeof(profile.SDalo) != "undefined"  && 
+      typeof(profile.PAhhtype) != "undefined" 
     ){
       return true;
     }else{
@@ -311,22 +324,20 @@ export class CoachchatPage implements OnInit {
     const modal = await this.modalController.create({
       component: ProfilePage,
       componentProps: {
-        'firstName': 'Douglas',
-        'lastName': 'Adams',
-        'middleInitial': 'N'
+        'flagCoachStart' : true
       }
     });
 
     modal.onDidDismiss().then((detail: any) => {
-        if (detail !== null) {
-          console.log('The result:', detail.data);
-        }
 
+      if (this.checkProfileStatus()){
         this.profileComplete = true;
 
         let thankMsg = this.translateCfgSrv.translate.instant("CHAT_INITIAL_MASTERDATA_THANK");
         this.addToChat(thankMsg, "bot");
         this.startChat();
+      }
+
     });
     
     await modal.present();
@@ -341,8 +352,7 @@ export class CoachchatPage implements OnInit {
           text: this.translateCfgSrv.translate.instant("CANCEL"),
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
-          }
+          handler: (blah) => { }
         }, {
           text:  this.translateCfgSrv.translate.instant("OK"),
           handler: () => {

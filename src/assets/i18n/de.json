@@ -44,6 +44,13 @@
     "COACH_GO_TO_EVAL": "Ansehen",
     "COACH_NO_EVALS" : "Noch keine Analysen durchgeführt. Starten sie eine neue.",
 
+    "COACH_ACTION_BAD_SCORE" : "Wir möchten Sie gerne dabei unterstützen, sich in Zukunft besser zu fühlen. In der folgenden Liste finden Sie auf Sie zugeschnittene Wohlfühl-Empfehlungen, die wir auf Basis Ihrer Antworten ermittelt haben.",
+    "COACH_ACTION_GOOD_SCORE" : "Das sieht schon gut aus - wir möchten Sie natürlich weiterhein dabei unterstützen, sich in Zukunft noch besser zu fühlen. In der folgenden Liste finden Sie auf Sie zugeschnittene Wohlfühl-Empfehlungen, die wir auf Basis Ihrer Antworten ermittelt haben.",
+    "COACH_ACTION_GREAT_SCORE" : "Klasse - das sieht super aus. Wir möchten Sie gerne dabei unterstützen, sich auch in Zukunft weiterhin so gut zu fühlen. In der folgenden Liste finden Sie auf Sie zugeschnittene Wohlfühl-Empfehlungen, die wir auf Basis Ihrer Antworten ermittelt haben.",
+    "COACH_ACTION_NO_SCORE" : "Es scheint, als wäre etwas schief gelaufen mit Ihrer Analyse. Bitte versuchen Sie es erneut - achten Sie auch darauf, dass Ihre persönlichen Daten im Profil alle hinterlegt sind. ",
+
+
+
     "NO_APPOINTMENTS" : "Noch keine Termine vereinbart",
     "NO_PRESCRIPTIONS" : "Noch keine Rezeptbestellungen",
 
@@ -77,6 +84,7 @@
     "PKV_BEIHILFE" : "Privatversicherung", 
     "GKV" : "Gesetzliche Versicherung",
 
+    "PROFILE_COACH_INCOMPLETE" : "Um den Health-Coach nutzen zu können, füllen Sie bitte alle Felder aus",
     "PROFILE_UPDATE_SUCCESS" : "Das Profil wurde aktualisiert",
     "PROFILE_VALIDATE_EMAIL_SENT" : "Wir haben Ihnen eine eMail geschickt - bitte überprüfen Sie ihr Postfach",
     "USER_EMAIL_VALIDATED" : "Ihre Emailadresse ist verifiziert",

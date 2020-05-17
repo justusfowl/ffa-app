@@ -75,9 +75,14 @@ export class LoginPage implements OnInit, AfterViewInit {
                   },500)
               },
               error => {
-                  this.dataSrv.setLoading(false);
-                  this.dataSrv.showError(this.translateCfg.translate.instant("LOGIN_ERROR"));
-                  console.error(error);
+                
+                self.dataSrv.showError(this.translateCfg.translate.instant("LOGIN_ERROR"));
+                
+                setTimeout(function(){
+                  self.dataSrv.setLoading(false);
+                },500)
+
+                console.error(error);
               });
   }
 

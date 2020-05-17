@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/dataservice';
 import { TranslateConfigService } from '../services/translate-config.service';
@@ -10,6 +10,8 @@ import { TranslateConfigService } from '../services/translate-config.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+
+  flagCoachProfile : boolean = false;
 
   currentUser : any;
   currentUserInitial : any;
@@ -24,9 +26,17 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private modalCtrl:ModalController, 
+    private params: NavParams, 
     private authService : AuthService, 
     private dataSrv : DataService, 
-    private translateCfg : TranslateConfigService) { }
+    private translateCfg : TranslateConfigService) {
+
+      if (this.params.get('flagCoachStart')){
+        this.flagCoachProfile = true;
+        console.log(true);
+      }
+
+    }
 
   ngOnInit() {
 
@@ -45,6 +55,8 @@ export class ProfilePage implements OnInit {
       }
       
     });
+
+    
 
   }
 
@@ -181,7 +193,16 @@ export class ProfilePage implements OnInit {
   }
 
   closeModal(){
-    this.modalCtrl.dismiss();
+    if (this.flagCoachProfile){
+      if (this.checkProfileStatus()){
+        this.modalCtrl.dismiss();
+      }else{
+        this.dataSrv.showToast(this.translateCfg.translate.instant("PROFILE_COACH_INCOMPLETE"));
+      }
+    }else{
+      this.modalCtrl.dismiss();
+    }
+    
   }
 
   saveDataAndClose(){
@@ -210,6 +231,32 @@ export class ProfilePage implements OnInit {
     }).catch(err => {
       console.error(err);
     })
+  }
+
+  checkProfileStatus(){
+    let profile = this.currentUser;
+
+    if (
+      typeof(profile.birthdate) != "undefined" && 
+      typeof(profile.bula) != "undefined"  && 
+      typeof(profile.PAgewiB) != "undefined"  && 
+      typeof(profile.PAgroe) != "undefined"  && 
+      typeof(profile.sex) != "undefined"  && 
+      typeof(profile.MIbirthplace) != "undefined"  && 
+      typeof(profile.MIcitizen) != "undefined"  && 
+      typeof(profile.IAkv1D) != "undefined"  && 
+      typeof(profile.SDbild4C) != "undefined"  && 
+      typeof(profile.SDbverh2) != "undefined"  && 
+      typeof(profile.SDhvtypD) != "undefined"  && 
+      typeof(profile.SDmainstat) != "undefined"  && 
+      typeof(profile.SDalo) != "undefined"  && 
+      typeof(profile.PAhhtype) != "undefined" 
+    ){
+      return true;
+    }else{
+      return false;
+    }
+
   }
 
 }
